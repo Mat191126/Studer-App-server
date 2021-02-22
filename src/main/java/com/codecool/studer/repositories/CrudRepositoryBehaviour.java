@@ -1,9 +1,11 @@
 package com.codecool.studer.repositories;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.Optional;
 
+@NoRepositoryBean
 public interface CrudRepositoryBehaviour<T, V> extends CrudRepository<T, V> {
 
     Iterable<T> findAllByActive(boolean active);

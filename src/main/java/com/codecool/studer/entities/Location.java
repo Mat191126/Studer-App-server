@@ -1,18 +1,25 @@
 package com.codecool.studer.entities;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "locations")
 public class Location implements BaseEntityMethods<UUID> {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private UUID id;
 
     @NotNull

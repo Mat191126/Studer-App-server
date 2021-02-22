@@ -1,15 +1,24 @@
 package com.codecool.studer.entities;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class User {
+@Table(name = "users")
+public class User implements BaseEntityMethods<UUID>{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
     private UUID id;
 
     @NotNull
@@ -22,6 +31,7 @@ public class User {
     private String password;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @OneToOne(cascade = CascadeType.ALL)
