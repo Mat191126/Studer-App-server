@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Address {
+public class Address implements BaseEntityMethods<UUID> {
 
     @Id
     @GeneratedValue(generator="system-uuid")

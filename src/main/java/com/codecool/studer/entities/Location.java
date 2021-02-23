@@ -14,7 +14,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "locations")
 public class Location implements BaseEntityMethods<UUID> {
 
     @Id
