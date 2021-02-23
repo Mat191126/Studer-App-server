@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -30,8 +31,12 @@ public class Place {
     private String address;     //temporary type of String
 
     @NotNull
+    @ElementCollection(targetClass = PlaceType.class)
+    @CollectionTable(name = "place_types",
+            joinColumns = @JoinColumn(name = "place_id"))
     @Enumerated(EnumType.STRING)
-    private PlaceType placeTypes;   //temporary type of enum
+    @Column(name = "type")
+    private Set<PlaceType> placeTypes;
 
     @NotNull
     @Column(columnDefinition = "boolean default true")
