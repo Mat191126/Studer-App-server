@@ -31,11 +31,10 @@ public class Place {
     private String address;     //temporary type of String
 
     @NotNull
-    @ElementCollection(targetClass = PlaceType.class)
-    @CollectionTable(name = "place_types",
-            joinColumns = @JoinColumn(name = "place_id"))
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "place_types_list", joinColumns = {
+            @JoinColumn(name = "place_id")}, inverseJoinColumns = {
+            @JoinColumn(name = "place_type_id")})
     private Set<PlaceType> placeTypes;
 
     @NotNull
