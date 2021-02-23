@@ -28,7 +28,8 @@ public class Place implements BaseEntityMethods<UUID> {
     private String description;
 
     @NotNull
-    private String address;     //temporary type of String
+    @OneToOne
+    private Address address;
 
     @NotNull
     @ManyToMany(fetch = FetchType.LAZY)
