@@ -1,4 +1,4 @@
-package com.codecool.studer.services;
+package com.company.studer.services;
 
 import java.util.Optional;
 

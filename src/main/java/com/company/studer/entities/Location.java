@@ -1,4 +1,4 @@
-package com.codecool.studer.entities;
+package com.company.studer.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;

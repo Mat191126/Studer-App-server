@@ -1,6 +1,6 @@
-package com.codecool.studer.repositories;
+package com.company.studer.repositories;
 
-import com.codecool.studer.entities.User;
+import com.company.studer.entities.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package com.codecool.studer;
+package com.company.studer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
-package com.codecool.studer.services;
+package com.company.studer.services;
 
-import com.codecool.studer.entities.BaseEntityMethods;
-import com.codecool.studer.repositories.CrudRepositoryMethods;
+import com.company.studer.entities.BaseEntityMethods;
+import com.company.studer.repositories.CrudRepositoryMethods;
 
 import java.util.Optional;
 

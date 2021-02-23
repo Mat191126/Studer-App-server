@@ -1,4 +1,4 @@
-package com.codecool.studer.entities;
+package com.company.studer.entities;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,13 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Place implements BaseEntityMethods<UUID> {
+public class Address implements BaseEntityMethods<UUID> {
 
     @Id
     @GeneratedValue(generator="system-uuid")
@@ -22,21 +21,20 @@ public class Place implements BaseEntityMethods<UUID> {
     private UUID id;
 
     @NotNull
-    private String name;
+    private String street;
 
     @NotNull
-    private String description;
+    private String streetNumber;
 
     @NotNull
-    @OneToOne
-    private Address address;
+    private String town;
 
     @NotNull
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "place_types_list", joinColumns = {
-            @JoinColumn(name = "place_id")}, inverseJoinColumns = {
-            @JoinColumn(name = "place_type_id")})
-    private Set<PlaceType> placeTypes;
+    private String zipCode;
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location location;
 
     @NotNull
     @Column(columnDefinition = "boolean default true")

@@ -10,11 +10,11 @@
         <version>2.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.codecool</groupId>
+    <groupId>com.company</groupId>
     <artifactId>studer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Studer</name>
-    <description>Spring Boot Studer App</description>
+    <description>Spring Boot Studer App server</description>
 
     <properties>
         <maven.compiler.source>15</maven.compiler.source>

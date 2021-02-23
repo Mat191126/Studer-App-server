@@ -1,8 +1,7 @@
-package com.codecool.studer.services;
+package com.company.studer.services;
 
-import com.codecool.studer.entities.Address;
-import com.codecool.studer.entities.Place;
-import com.codecool.studer.repositories.CrudRepositoryMethods;
+import com.company.studer.entities.Place;
+import com.company.studer.repositories.CrudRepositoryMethods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
