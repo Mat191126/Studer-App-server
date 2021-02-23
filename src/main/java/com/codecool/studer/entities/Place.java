@@ -14,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Place {
+public class Place implements BaseEntityMethods<UUID> {
 
     @Id
     @GeneratedValue(generator="system-uuid")

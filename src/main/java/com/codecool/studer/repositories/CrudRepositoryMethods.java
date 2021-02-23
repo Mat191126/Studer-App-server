@@ -6,7 +6,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.Optional;
 
 @NoRepositoryBean
-public interface CrudRepositoryBehaviour<T, V> extends CrudRepository<T, V> {
+public interface CrudRepositoryMethods<T, V> extends CrudRepository<T, V> {
 
     Iterable<T> findAllByActive(boolean active);
 

@@ -1,11 +1,11 @@
 package com.codecool.studer.repositories;
 
-import com.codecool.studer.entities.User;
+import com.codecool.studer.entities.Address;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends CrudRepositoryMethods<User, UUID> {
+public interface AddressRepository extends CrudRepositoryMethods<Address, UUID> {
 
 }

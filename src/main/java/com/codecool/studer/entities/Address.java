@@ -13,8 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="users")
-public class User implements BaseEntityMethods<UUID> {
+public class Address implements BaseEntityMethods<UUID> {
 
     @Id
     @GeneratedValue(generator="system-uuid")
@@ -22,18 +21,18 @@ public class User implements BaseEntityMethods<UUID> {
     private UUID id;
 
     @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-    @NotNull
-    private String email;
-    @NotNull
-    private String password;
+    private String street;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private String streetNumber;
 
+    @NotNull
+    private String town;
+
+    @NotNull
+    private String zipCode;
+
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
