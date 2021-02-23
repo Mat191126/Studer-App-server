@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends CrudRepositoryBehaviour<User, UUID> {
+public interface UserRepository extends CrudRepositoryMethods<User, UUID> {
 
 }
