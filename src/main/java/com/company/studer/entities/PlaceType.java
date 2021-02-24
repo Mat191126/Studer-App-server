@@ -11,12 +11,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class PlaceType {
+public class PlaceType implements BaseEntityMethods<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     private String type;
+
+    @NotNull
+    @Column(columnDefinition = "boolean default true")
+    private boolean active;
 }
