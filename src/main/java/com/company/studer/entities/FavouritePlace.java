@@ -1,5 +1,6 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +29,7 @@ public class FavouritePlace implements BaseEntityMethods<UUID> {
     @ManyToOne
     private Place place;
 
+    @JsonIgnore
     @NotNull
     @Column(columnDefinition = "boolean default true")
     private boolean active;

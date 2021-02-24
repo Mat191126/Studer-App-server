@@ -1,5 +1,6 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +37,7 @@ public class Address implements BaseEntityMethods<UUID> {
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
+    @JsonIgnore
     @NotNull
     @Column(columnDefinition = "boolean default true")
     private boolean active;

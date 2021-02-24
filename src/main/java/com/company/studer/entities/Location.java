@@ -1,5 +1,6 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,6 +27,7 @@ public class Location implements BaseEntityMethods<UUID> {
     @NotNull
     private BigDecimal longitude;
 
+    @JsonIgnore
     @NotNull
     @Column(columnDefinition = "boolean default true")
     private boolean active;

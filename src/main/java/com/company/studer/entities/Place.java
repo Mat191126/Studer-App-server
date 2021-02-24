@@ -1,5 +1,6 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -38,6 +39,7 @@ public class Place implements BaseEntityMethods<UUID> {
             @JoinColumn(name = "place_type_id")})
     private Set<PlaceType> placeTypes;
 
+    @JsonIgnore
     @NotNull
     @Column(columnDefinition = "boolean default true")
     private boolean active;
