@@ -15,7 +15,7 @@ public class PlaceType implements BaseEntityMethods<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotNull
     private String type;
