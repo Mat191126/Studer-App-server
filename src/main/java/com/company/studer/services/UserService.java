@@ -11,9 +11,12 @@ import java.util.UUID;
 @Service
 public class UserService extends CrudService<User, UUID> {
 
+    private final LocationService locationService;
+
     @Autowired
-    public UserService(CrudRepositoryMethods<User, UUID> repository) {
+    public UserService(CrudRepositoryMethods<User, UUID> repository, LocationService locationService) {
         super(repository);
+        this.locationService = locationService;
     }
 
     @Override
@@ -38,6 +41,7 @@ public class UserService extends CrudService<User, UUID> {
         Optional<User> object = get(id);
         if (object.isPresent()) {
             User oldObject = object.get();
+            locationService.delete(oldObject.getLocation().getId());
             oldObject.setActive(false);
             repository.save(oldObject);
             return true;

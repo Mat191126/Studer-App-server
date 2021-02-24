@@ -11,9 +11,12 @@ import java.util.UUID;
 @Service
 public class AddressService extends CrudService<Address, UUID> {
 
+    private final LocationService locationService;
+
     @Autowired
-    public AddressService(CrudRepositoryMethods<Address, UUID> repository) {
+    public AddressService(CrudRepositoryMethods<Address, UUID> repository, LocationService locationService) {
         super(repository);
+        this.locationService = locationService;
     }
 
     @Override
@@ -37,7 +40,7 @@ public class AddressService extends CrudService<Address, UUID> {
         Optional<Address> object = get(id);
         if (object.isPresent()) {
             Address oldObject = object.get();
-            //locationService.delete(oldObject.getLocation().getId())
+            locationService.delete(oldObject.getLocation().getId());
             oldObject.setActive(false);
             repository.save(oldObject);
             return true;
