@@ -5,7 +5,7 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -18,8 +18,8 @@ import java.util.UUID;
 public class User implements BaseEntityMethods<UUID> {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Type(type = "pg-uuid")
+    @GeneratedValue
     private UUID id;
 
     @NotNull
@@ -40,6 +40,5 @@ public class User implements BaseEntityMethods<UUID> {
 
     @JsonIgnore
     @NotNull
-    @Column(columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
 }

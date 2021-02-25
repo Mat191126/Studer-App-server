@@ -23,6 +23,5 @@ public class PlaceType implements BaseEntityMethods<Long> {
 
     @JsonIgnore
     @NotNull
-    @Column(columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
 }
