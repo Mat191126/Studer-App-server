@@ -1,11 +1,15 @@
 package com.company.studer.controllers;
 
 import com.company.studer.entities.Place;
+import com.company.studer.entities.PlaceType;
 import com.company.studer.services.PlaceService;
+import com.company.studer.services.PlaceTypeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -13,9 +17,11 @@ import java.util.UUID;
 public class PlaceController {
 
     private final PlaceService placeService;
+    private final PlaceTypeService placeTypeService;
 
-    public PlaceController(PlaceService userService) {
+    public PlaceController(PlaceService userService, PlaceTypeService placeTypeService) {
         this.placeService = userService;
+        this.placeTypeService = placeTypeService;
     }
 
     @GetMapping
@@ -30,6 +36,18 @@ public class PlaceController {
         return placeService.get(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+    }
+
+    @GetMapping("/type/{type_list}")
+    @ResponseStatus(HttpStatus.OK)
+    private Iterable<Place> getByPlaceTypes(@PathVariable Set<String> type_list) {
+        Set<PlaceType> placeTypes = new HashSet<>();
+        for (String placeTypeString : type_list) {
+            placeTypes.add(placeTypeService.getByType(placeTypeString).orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+            ));
+        }
+        return placeService.getByPlaceTypes(placeTypes);
     }
 
     @PostMapping
