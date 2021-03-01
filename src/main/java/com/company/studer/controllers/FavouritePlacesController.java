@@ -4,6 +4,7 @@ import com.company.studer.entities.FavouritePlace;
 import com.company.studer.services.FavouritePlaceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 
@@ -21,5 +22,22 @@ public class FavouritePlacesController {
     @ResponseStatus(HttpStatus.OK)
     private Iterable<FavouritePlace> getByUserId(@PathVariable UUID user_id) {
         return favouritePlaceService.getByUserIdAndActive(user_id);
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    protected FavouritePlace addNewObject(@RequestBody FavouritePlace place) {
+        if (favouritePlaceService.add(place)) {
+            return place;
+        }
+        throw new ResponseStatusException(HttpStatus.CONFLICT);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    protected void deleteObject(@PathVariable UUID id) {
+        if (!favouritePlaceService.delete(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }
