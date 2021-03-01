@@ -1,7 +1,6 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.PlaceType;
-import com.company.studer.repositories.CrudRepositoryMethods;
 import com.company.studer.repositories.PlaceTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +8,10 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PlaceTypeService extends CrudService<PlaceType, Long> {
+public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepository> {
 
     @Autowired
-    public PlaceTypeService(CrudRepositoryMethods<PlaceType, Long> repository) {
+    public PlaceTypeService(PlaceTypeRepository repository) {
         super(repository);
     }
 
@@ -41,7 +40,6 @@ public class PlaceTypeService extends CrudService<PlaceType, Long> {
     }
 
     public Optional<PlaceType> getByType(String type) {
-        PlaceTypeRepository placeTypeRepository = (PlaceTypeRepository) repository;
-        return placeTypeRepository.getPlaceTypeByType(type);
+        return repository.getPlaceTypeByType(type);
     }
 }
