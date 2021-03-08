@@ -1,0 +1,8 @@
+# database settings
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.platform=postgres
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.jpa.show-sql=false
+spring.jpa.hibernate.ddl-auto=update

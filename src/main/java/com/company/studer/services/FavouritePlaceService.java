@@ -1,7 +1,7 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.FavouritePlace;
-import com.company.studer.repositories.CrudRepositoryMethods;
+import com.company.studer.repositories.FavouritePlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class FavouritePlaceService extends CrudService<FavouritePlace, UUID> {
+public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, FavouritePlaceRepository> {
 
     @Autowired
-    public FavouritePlaceService(CrudRepositoryMethods<FavouritePlace, UUID> repository) {
+    public FavouritePlaceService(FavouritePlaceRepository repository) {
         super(repository);
     }
 
@@ -40,4 +40,9 @@ public class FavouritePlaceService extends CrudService<FavouritePlace, UUID> {
         }
         return false;
     }
+
+    public Iterable<FavouritePlace> getByUserIdAndActive(UUID id) {
+        return repository.getByUserIdAndActive(id, true);
+    }
+
 }

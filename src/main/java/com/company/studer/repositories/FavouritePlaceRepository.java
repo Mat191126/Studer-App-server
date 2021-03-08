@@ -7,5 +7,5 @@ import java.util.UUID;
 
 @Repository
 public interface FavouritePlaceRepository extends CrudRepositoryMethods<FavouritePlace, UUID> {
-
+    Iterable<FavouritePlace> getByUserIdAndActive(UUID id, boolean active);
 }

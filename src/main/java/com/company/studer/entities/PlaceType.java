@@ -1,5 +1,6 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class PlaceType implements BaseEntityMethods<Long> {
     @NotNull
     private String type;
 
+    @JsonIgnore
     @NotNull
-    @Column(columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
 }

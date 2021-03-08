@@ -1,7 +1,7 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.Location;
-import com.company.studer.repositories.CrudRepositoryMethods;
+import com.company.studer.repositories.LocationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class LocationService extends CrudService<Location, UUID> {
+public class LocationService extends CrudService<Location, UUID, LocationRepository> {
 
     @Autowired
-    public LocationService(CrudRepositoryMethods<Location, UUID> repository) {
+    public LocationService(LocationRepository repository) {
         super(repository);
     }
 

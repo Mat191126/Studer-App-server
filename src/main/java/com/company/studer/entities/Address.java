@@ -1,10 +1,11 @@
 package com.company.studer.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -16,8 +17,8 @@ import java.util.UUID;
 public class Address implements BaseEntityMethods<UUID> {
 
     @Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Type(type = "pg-uuid")
+    @GeneratedValue
     private UUID id;
 
     @NotNull
@@ -36,7 +37,7 @@ public class Address implements BaseEntityMethods<UUID> {
     @OneToOne(cascade = CascadeType.ALL)
     private Location location;
 
+    @JsonIgnore
     @NotNull
-    @Column(columnDefinition = "boolean default true")
-    private boolean active;
+    private boolean active = true;
 }

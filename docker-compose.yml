@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  dbpostgresql:
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=studer
+  studer-backend:
+    container_name: studer-backend
+    build:
+     context: .
+    ports:
+      - 8080:8080

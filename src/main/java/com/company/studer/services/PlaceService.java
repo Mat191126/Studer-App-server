@@ -1,20 +1,22 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.Place;
-import com.company.studer.repositories.CrudRepositoryMethods;
+import com.company.studer.entities.PlaceType;
+import com.company.studer.repositories.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class PlaceService extends CrudService<Place, UUID> {
+public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
 
     private final AddressService addressService;
 
     @Autowired
-    public PlaceService(CrudRepositoryMethods<Place, UUID> repository, AddressService addressService) {
+    public PlaceService(PlaceRepository repository, AddressService addressService) {
         super(repository);
         this.addressService = addressService;
     }
@@ -45,6 +47,10 @@ public class PlaceService extends CrudService<Place, UUID> {
             return true;
         }
         return false;
+    }
+
+    public Iterable<Place> getByPlaceTypes(Set<PlaceType> typeList) {
+        return repository.getPlaceByActiveAndPlaceTypesIn(true, typeList);
     }
 
 }
