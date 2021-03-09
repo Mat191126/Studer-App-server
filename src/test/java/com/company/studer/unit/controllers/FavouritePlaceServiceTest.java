@@ -60,4 +60,24 @@ public class FavouritePlaceServiceTest {
                 () -> assertEquals(expected, actual)
         );
     }
+
+    @Test
+    public void getAll_ReturnsFavouritePlaceList() {
+        //Arrange
+        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
+
+        List<FavouritePlace> expectedList = new ArrayList<>();
+
+        when(favouritePlaceRepository.findAllByActive(eq(true))).thenReturn(expectedList);
+        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+
+        //Act
+        List<FavouritePlace> actualList = (List<FavouritePlace>) favouritePlaceService.getAll();
+
+        //Assert
+        assertAll(
+                () -> verify(favouritePlaceRepository, times(1)).findAllByActive(eq(true)),
+                () -> assertSame(expectedList, actualList)
+        );
+    }
 }
