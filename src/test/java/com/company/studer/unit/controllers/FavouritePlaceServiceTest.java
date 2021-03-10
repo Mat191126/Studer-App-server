@@ -106,4 +106,32 @@ public class FavouritePlaceServiceTest {
         );
     }
 
+    @Test
+    public void update_ReturnsTrue_WhenObjectIsUpdated() {
+        //Arrange
+        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
+
+        UUID uuid = UUID.randomUUID();
+
+        FavouritePlace favouritePlace = mock(FavouritePlace.class);
+
+        when(favouritePlace.getId()).thenReturn(uuid);
+        when(favouritePlaceRepository.findByIdAndActive(eq(uuid), eq(true))).thenReturn(Optional.of(favouritePlace));
+        when(favouritePlaceRepository.save(favouritePlace)).thenReturn(favouritePlace);
+        when(favouritePlaceRepository.existsById(eq(favouritePlace.getId()))).thenReturn(true);
+
+        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+        //Act
+        boolean actual = favouritePlaceService.update(favouritePlace);
+
+        //Assert
+        assertAll(
+                () -> verify(favouritePlaceRepository, times(1)).findByIdAndActive(eq(uuid), eq(true)),
+                () -> verify(favouritePlace, times(1)).setUser(favouritePlace.getUser()),
+                () -> verify(favouritePlace, times(1)).setPlace(favouritePlace.getPlace()),
+                () -> verify(favouritePlaceRepository, times(1)).save(favouritePlace),
+                () -> assertTrue(actual)
+        );
+    }
+
 }
