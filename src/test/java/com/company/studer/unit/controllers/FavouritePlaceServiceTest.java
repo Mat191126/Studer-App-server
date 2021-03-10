@@ -80,4 +80,30 @@ public class FavouritePlaceServiceTest {
                 () -> assertSame(expectedList, actualList)
         );
     }
+
+    @Test
+    public void delete_ReturnsTrue_WhenObjectIsDeleted() {
+        //Arrange
+        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
+
+        UUID uuid = UUID.randomUUID();
+
+        FavouritePlace favouritePlace = mock(FavouritePlace.class);
+
+        when(favouritePlaceRepository.findByIdAndActive(eq(uuid), eq(true))).thenReturn(Optional.of(favouritePlace));
+        when(favouritePlaceRepository.save(favouritePlace)).thenReturn(favouritePlace);
+
+        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+        //Act
+        boolean actual = favouritePlaceService.delete(uuid);
+
+        //Assert
+        assertAll(
+                () -> verify(favouritePlaceRepository, times(1)).findByIdAndActive(eq(uuid), eq(true)),
+                () -> verify(favouritePlace, times(1)).setActive(eq(false)),
+                () -> verify(favouritePlaceRepository, times(1)).save(favouritePlace),
+                () -> assertTrue(actual)
+        );
+    }
+
 }
