@@ -42,7 +42,7 @@ public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, Fav
     }
 
     public Iterable<FavouritePlace> getByUserIdAndActive(UUID id) {
-        return repository.getByUserIdAndActive(id, true);
+        return repository.findByUserIdAndActive(id, true);
     }
 
 }

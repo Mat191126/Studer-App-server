@@ -26,7 +26,7 @@ public class FavouritePlaceServiceTest {
         List<FavouritePlace> expectedList = new ArrayList<>();
         UUID uuid = UUID.randomUUID();
 
-        when(favouritePlaceRepository.getByUserIdAndActive(eq(uuid), eq(true))).thenReturn(expectedList);
+        when(favouritePlaceRepository.findByUserIdAndActive(eq(uuid), eq(true))).thenReturn(expectedList);
         FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
 
         //Act
@@ -34,7 +34,7 @@ public class FavouritePlaceServiceTest {
 
         //Assert
         assertAll(
-                () -> verify(favouritePlaceRepository, times(1)).getByUserIdAndActive(eq(uuid), eq(true)),
+                () -> verify(favouritePlaceRepository, times(1)).findByUserIdAndActive(eq(uuid), eq(true)),
                 () -> assertSame(expectedList, actualList)
         );
     }

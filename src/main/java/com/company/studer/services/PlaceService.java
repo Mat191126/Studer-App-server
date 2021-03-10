@@ -50,7 +50,7 @@ public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
     }
 
     public Iterable<Place> getByPlaceTypes(Set<PlaceType> typeList) {
-        return repository.getPlaceByActiveAndPlaceTypesIn(true, typeList);
+        return repository.findPlaceByActiveAndPlaceTypesIn(true, typeList);
     }
 
 }

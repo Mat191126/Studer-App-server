@@ -40,6 +40,6 @@ public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepo
     }
 
     public Optional<PlaceType> getByType(String type) {
-        return repository.getPlaceTypeByType(type);
+        return repository.findPlaceTypeByType(type);
     }
 }

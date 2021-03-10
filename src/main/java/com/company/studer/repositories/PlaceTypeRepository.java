@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface PlaceTypeRepository extends CrudRepositoryMethods<PlaceType, Long> {
 
-    Optional<PlaceType> getPlaceTypeByType(String type);
+    Optional<PlaceType> findPlaceTypeByType(String type);
 }
