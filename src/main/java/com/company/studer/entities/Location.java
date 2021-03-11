@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -25,8 +26,11 @@ public class Location implements BaseEntityMethods<UUID> {
     private UUID id;
 
     @NotNull
+    @Column(precision = 8, scale = 6)
     private BigDecimal latitude;
+
     @NotNull
+    @Column(precision = 8, scale = 6)
     private BigDecimal longitude;
 
     @JsonIgnore
