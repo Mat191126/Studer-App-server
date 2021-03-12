@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepository> {
+public class PlaceTypeService extends CrudService<PlaceType, Long> {
+
+    private final PlaceTypeRepository repository;
 
     @Autowired
     public PlaceTypeService(PlaceTypeRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
     @Override

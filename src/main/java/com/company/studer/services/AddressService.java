@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class AddressService extends CrudService<Address, UUID, AddressRepository> {
+public class AddressService extends CrudService<Address, UUID> {
 
     private final LocationService locationService;
 

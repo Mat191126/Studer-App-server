@@ -11,13 +11,15 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
+public class PlaceService extends CrudService<Place, UUID> {
 
+    private PlaceRepository repository;
     private final AddressService addressService;
 
     @Autowired
     public PlaceService(PlaceRepository repository, AddressService addressService) {
         super(repository);
+        this.repository = repository;
         this.addressService = addressService;
     }
 

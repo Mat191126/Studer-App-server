@@ -9,11 +9,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, FavouritePlaceRepository> {
+public class FavouritePlaceService extends CrudService<FavouritePlace, UUID> {
+
+    private final FavouritePlaceRepository repository;
 
     @Autowired
     public FavouritePlaceService(FavouritePlaceRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
     @Override
