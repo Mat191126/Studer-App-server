@@ -4,7 +4,6 @@ import com.company.studer.entities.FavouritePlace;
 import com.company.studer.repositories.FavouritePlaceRepository;
 import com.company.studer.services.FavouritePlaceService;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +13,22 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
 
-@SpringBootTest
-public class FavouritePlaceServiceTest {
+    private final FavouritePlaceRepository repository = mock(FavouritePlaceRepository.class);
+
+    protected FavouritePlaceRepository getRepositoryMock() {
+        return repository;
+    }
+
+    protected FavouritePlaceService getService() {
+        return new FavouritePlaceService(repository);
+    }
+
+    @Override
+    protected UUID getId() {
+        return UUID.randomUUID();
+    }
 
     @Test
     public void getByUserIdAndActive_ReturnsFavouritePlacesList_WhenUserIdGiven() {
@@ -39,27 +51,6 @@ public class FavouritePlaceServiceTest {
         );
     }
 
-    @Test
-    public void get_ReturnsFavouritePlaceObject_WhenIdGiven() {
-        //Arrange
-        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
-
-        FavouritePlace favouritePlace = mock(FavouritePlace.class);
-        Optional<FavouritePlace> expected = Optional.of(favouritePlace);
-        UUID uuid = UUID.randomUUID();
-
-        when(favouritePlaceRepository.findByIdAndActive(eq(uuid), eq(true))).thenReturn(Optional.of(favouritePlace));
-        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
-
-        //Act
-        Optional<FavouritePlace> actual = favouritePlaceService.get(uuid);
-
-        //Assert
-        assertAll(
-                () -> verify(favouritePlaceRepository, times(1)).findByIdAndActive(eq(uuid), eq(true)),
-                () -> assertEquals(expected, actual)
-        );
-    }
 
     @Test
     public void getAll_ReturnsFavouritePlaceList() {
