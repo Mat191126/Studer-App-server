@@ -39,7 +39,7 @@ public abstract class CrudServiceTest <V>{
 
         //Assert
         assertAll(
-                () -> verify(repository, times(1)).findByIdAndActive(eq(id), eq(true)),
+                () -> verify(repository).findByIdAndActive(eq(id), eq(true)),
                 () -> assertEquals(expected, actual)
         );
     }
@@ -58,7 +58,7 @@ public abstract class CrudServiceTest <V>{
 
         //Assert
         assertAll(
-                () -> verify(repository, times(1)).findAllByActive(eq(true)),
+                () -> verify(repository).findAllByActive(eq(true)),
                 () -> assertEquals(expectedList, actualList)
         );
     }

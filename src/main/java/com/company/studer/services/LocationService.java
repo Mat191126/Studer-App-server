@@ -30,7 +30,7 @@ public class LocationService extends CrudService<Location, UUID> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<Location> object = get(id);
         if (object.isPresent()) {
             Location oldObject = object.get();

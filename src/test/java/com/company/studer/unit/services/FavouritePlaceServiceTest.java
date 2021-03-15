@@ -45,7 +45,7 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
 
         //Assert
         assertAll(
-                () -> verify(repository, times(1)).findByUserIdAndActive(uuid, true),
+                () -> verify(repository).findByUserIdAndActive(uuid, true),
                 () -> assertSame(expectedList, actualList)
         );
     }
@@ -64,9 +64,9 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
 
         //Assert
         assertAll(
-                () -> verify(repository, times(1)).findByIdAndActive(uuid, true),
-                () -> verify(favouritePlace, times(1)).setActive(false),
-                () -> verify(repository, times(1)).save(favouritePlace),
+                () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(favouritePlace).setActive(false),
+                () -> verify(repository).save(favouritePlace),
                 () -> assertTrue(actual)
         );
     }
@@ -87,10 +87,10 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
 
         //Assert
         assertAll(
-                () -> verify(repository, times(1)).findByIdAndActive(uuid, true),
-                () -> verify(favouritePlace, times(1)).setUser(favouritePlace.getUser()),
-                () -> verify(favouritePlace, times(1)).setPlace(favouritePlace.getPlace()),
-                () -> verify(repository, times(1)).save(favouritePlace),
+                () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(favouritePlace).setUser(favouritePlace.getUser()),
+                () -> verify(favouritePlace).setPlace(favouritePlace.getPlace()),
+                () -> verify(repository).save(favouritePlace),
                 () -> assertTrue(actual)
         );
     }
