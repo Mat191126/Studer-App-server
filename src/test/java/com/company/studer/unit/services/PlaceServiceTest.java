@@ -1,4 +1,4 @@
-package com.company.studer.unit.controllers;
+package com.company.studer.unit.services;
 
 import com.company.studer.entities.Place;
 import com.company.studer.repositories.CrudRepositoryMethods;
