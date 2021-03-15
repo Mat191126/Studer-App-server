@@ -1,9 +1,6 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.Place;
-import com.company.studer.repositories.CrudRepositoryMethods;
 import com.company.studer.repositories.PlaceRepository;
-import com.company.studer.services.CrudService;
 import com.company.studer.services.PlaceService;
 
 import java.util.UUID;
@@ -14,12 +11,12 @@ public class PlaceServiceTest extends CrudServiceTest<UUID> {
 
     private final PlaceRepository repository = mock(PlaceRepository.class);
     @Override
-    protected CrudRepositoryMethods<Place, UUID> getRepositoryMock() {
+    protected PlaceRepository getRepositoryMock() {
         return repository;
     }
 
     @Override
-    protected CrudService<Place, UUID> getService() {
+    protected PlaceService getService() {
         return new PlaceService(repository, null);
     }
 
