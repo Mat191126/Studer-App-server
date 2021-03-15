@@ -39,7 +39,7 @@ public class PlaceService extends CrudService<Place, UUID> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<Place> object = get(id);
         if (object.isPresent()) {
             Place oldObject = object.get();

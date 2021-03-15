@@ -36,7 +36,7 @@ public class AddressService extends CrudService<Address, UUID> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<Address> object = get(id);
         if (object.isPresent()) {
             Address oldObject = object.get();

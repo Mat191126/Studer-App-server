@@ -33,7 +33,7 @@ public class FavouritePlaceService extends CrudService<FavouritePlace, UUID> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<FavouritePlace> object = get(id);
         if (object.isPresent()) {
             FavouritePlace oldObject = object.get();

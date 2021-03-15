@@ -31,7 +31,7 @@ public class PlaceTypeService extends CrudService<PlaceType, Long> {
     }
 
     @Override
-    public final boolean delete(Long id) {
+    public boolean delete(Long id) {
         Optional<PlaceType> object = get(id);
         if (object.isPresent()) {
             PlaceType oldObject = object.get();
