@@ -16,6 +16,7 @@ import static org.mockito.Mockito.*;
 public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
 
     private final FavouritePlaceRepository repository = mock(FavouritePlaceRepository.class);
+    private final FavouritePlace favouritePlace = mock(FavouritePlace.class);
 
     protected FavouritePlaceRepository getRepositoryMock() {
         return repository;
@@ -33,20 +34,18 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
     @Test
     public void getByUserIdAndActive_ReturnsFavouritePlacesList_WhenUserIdGiven() {
         //Arrange
-        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
-
         List<FavouritePlace> expectedList = new ArrayList<>();
-        UUID uuid = UUID.randomUUID();
+        UUID uuid = getId();
 
-        when(favouritePlaceRepository.findByUserIdAndActive(eq(uuid), eq(true))).thenReturn(expectedList);
-        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+        when(repository.findByUserIdAndActive(uuid, true)).thenReturn(expectedList);
+        FavouritePlaceService favouritePlaceService = getService();
 
         //Act
         List<FavouritePlace> actualList = (List<FavouritePlace>) favouritePlaceService.getByUserIdAndActive(uuid);
 
         //Assert
         assertAll(
-                () -> verify(favouritePlaceRepository, times(1)).findByUserIdAndActive(eq(uuid), eq(true)),
+                () -> verify(repository, times(1)).findByUserIdAndActive(uuid, true),
                 () -> assertSame(expectedList, actualList)
         );
     }
@@ -54,24 +53,20 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
     @Test
     public void delete_ReturnsTrue_WhenObjectIsDeleted() {
         //Arrange
-        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
+        UUID uuid = getId();
 
-        UUID uuid = UUID.randomUUID();
+        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(favouritePlace));
+        when(repository.save(favouritePlace)).thenReturn(favouritePlace);
 
-        FavouritePlace favouritePlace = mock(FavouritePlace.class);
-
-        when(favouritePlaceRepository.findByIdAndActive(eq(uuid), eq(true))).thenReturn(Optional.of(favouritePlace));
-        when(favouritePlaceRepository.save(favouritePlace)).thenReturn(favouritePlace);
-
-        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+        FavouritePlaceService favouritePlaceService = getService();
         //Act
         boolean actual = favouritePlaceService.delete(uuid);
 
         //Assert
         assertAll(
-                () -> verify(favouritePlaceRepository, times(1)).findByIdAndActive(eq(uuid), eq(true)),
-                () -> verify(favouritePlace, times(1)).setActive(eq(false)),
-                () -> verify(favouritePlaceRepository, times(1)).save(favouritePlace),
+                () -> verify(repository, times(1)).findByIdAndActive(uuid, true),
+                () -> verify(favouritePlace, times(1)).setActive(false),
+                () -> verify(repository, times(1)).save(favouritePlace),
                 () -> assertTrue(actual)
         );
     }
@@ -79,27 +74,23 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
     @Test
     public void update_ReturnsTrue_WhenObjectIsUpdated() {
         //Arrange
-        FavouritePlaceRepository favouritePlaceRepository = mock(FavouritePlaceRepository.class);
-
-        UUID uuid = UUID.randomUUID();
-
-        FavouritePlace favouritePlace = mock(FavouritePlace.class);
+        UUID uuid = getId();
 
         when(favouritePlace.getId()).thenReturn(uuid);
-        when(favouritePlaceRepository.findByIdAndActive(eq(uuid), eq(true))).thenReturn(Optional.of(favouritePlace));
-        when(favouritePlaceRepository.save(favouritePlace)).thenReturn(favouritePlace);
-        when(favouritePlaceRepository.existsById(eq(favouritePlace.getId()))).thenReturn(true);
+        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(favouritePlace));
+        when(repository.save(favouritePlace)).thenReturn(favouritePlace);
+        when(repository.existsById(favouritePlace.getId())).thenReturn(true);
 
-        FavouritePlaceService favouritePlaceService = new FavouritePlaceService(favouritePlaceRepository);
+        FavouritePlaceService favouritePlaceService = getService();
         //Act
         boolean actual = favouritePlaceService.update(favouritePlace);
 
         //Assert
         assertAll(
-                () -> verify(favouritePlaceRepository, times(1)).findByIdAndActive(eq(uuid), eq(true)),
+                () -> verify(repository, times(1)).findByIdAndActive(uuid, true),
                 () -> verify(favouritePlace, times(1)).setUser(favouritePlace.getUser()),
                 () -> verify(favouritePlace, times(1)).setPlace(favouritePlace.getPlace()),
-                () -> verify(favouritePlaceRepository, times(1)).save(favouritePlace),
+                () -> verify(repository, times(1)).save(favouritePlace),
                 () -> assertTrue(actual)
         );
     }
