@@ -32,25 +32,6 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
     }
 
     @Test
-    public void getByUserIdAndActive_ReturnsFavouritePlacesList_WhenUserIdGiven() {
-        //Arrange
-        List<FavouritePlace> expectedList = new ArrayList<>();
-        UUID uuid = getId();
-
-        when(repository.findByUserIdAndActive(uuid, true)).thenReturn(expectedList);
-        FavouritePlaceService favouritePlaceService = getService();
-
-        //Act
-        List<FavouritePlace> actualList = (List<FavouritePlace>) favouritePlaceService.getByUserIdAndActive(uuid);
-
-        //Assert
-        assertAll(
-                () -> verify(repository).findByUserIdAndActive(uuid, true),
-                () -> assertSame(expectedList, actualList)
-        );
-    }
-
-    @Test
     public void update_ReturnsTrue_WhenObjectIsUpdated() {
         //Arrange
         UUID uuid = getId();
@@ -92,6 +73,25 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
                 () -> verify(favouritePlace).setActive(false),
                 () -> verify(repository).save(favouritePlace),
                 () -> assertTrue(actual)
+        );
+    }
+
+    @Test
+    public void getByUserIdAndActive_ReturnsFavouritePlacesList_WhenUserIdGiven() {
+        //Arrange
+        List<FavouritePlace> expectedList = new ArrayList<>();
+        UUID uuid = getId();
+
+        when(repository.findByUserIdAndActive(uuid, true)).thenReturn(expectedList);
+        FavouritePlaceService favouritePlaceService = getService();
+
+        //Act
+        List<FavouritePlace> actualList = (List<FavouritePlace>) favouritePlaceService.getByUserIdAndActive(uuid);
+
+        //Assert
+        assertAll(
+                () -> verify(repository).findByUserIdAndActive(uuid, true),
+                () -> assertSame(expectedList, actualList)
         );
     }
 

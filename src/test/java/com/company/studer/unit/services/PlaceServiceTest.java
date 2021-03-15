@@ -1,18 +1,19 @@
 package com.company.studer.unit.services;
 
 import com.company.studer.entities.Address;
+import com.company.studer.entities.FavouritePlace;
 import com.company.studer.entities.Place;
+import com.company.studer.entities.PlaceType;
 import com.company.studer.repositories.PlaceRepository;
 import com.company.studer.services.AddressService;
+import com.company.studer.services.FavouritePlaceService;
 import com.company.studer.services.LocationService;
 import com.company.studer.services.PlaceService;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
@@ -82,6 +83,25 @@ public class PlaceServiceTest extends CrudServiceTest<UUID> {
                 () -> verify(place).setActive(false),
                 () -> verify(repository).save(place),
                 () -> assertTrue(actual)
+        );
+    }
+
+    @Test
+    public void getByPlaceTypes_ReturnsPlacesList_WhenTypesGiven() {
+        //Arrange
+        List<Place> expectedList = new ArrayList<>();
+        Set<PlaceType> placeTypes = new HashSet<>();
+
+        when(repository.findPlaceByActiveAndPlaceTypesIn(true, placeTypes)).thenReturn(expectedList);
+        PlaceService placeService = getService();
+
+        //Act
+        List<Place> actualList = (List<Place>) placeService.getByPlaceTypes(placeTypes);
+
+        //Assert
+        assertAll(
+                () -> verify(repository).findPlaceByActiveAndPlaceTypesIn(true, placeTypes),
+                () -> assertSame(expectedList, actualList)
         );
     }
 }
