@@ -51,27 +51,6 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
     }
 
     @Test
-    public void delete_ReturnsTrue_WhenObjectIsDeleted() {
-        //Arrange
-        UUID uuid = getId();
-
-        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(favouritePlace));
-        when(repository.save(favouritePlace)).thenReturn(favouritePlace);
-
-        FavouritePlaceService favouritePlaceService = getService();
-        //Act
-        boolean actual = favouritePlaceService.delete(uuid);
-
-        //Assert
-        assertAll(
-                () -> verify(repository).findByIdAndActive(uuid, true),
-                () -> verify(favouritePlace).setActive(false),
-                () -> verify(repository).save(favouritePlace),
-                () -> assertTrue(actual)
-        );
-    }
-
-    @Test
     public void update_ReturnsTrue_WhenObjectIsUpdated() {
         //Arrange
         UUID uuid = getId();
@@ -90,6 +69,27 @@ public class FavouritePlaceServiceTest extends CrudServiceTest<UUID> {
                 () -> verify(repository).findByIdAndActive(uuid, true),
                 () -> verify(favouritePlace).setUser(favouritePlace.getUser()),
                 () -> verify(favouritePlace).setPlace(favouritePlace.getPlace()),
+                () -> verify(repository).save(favouritePlace),
+                () -> assertTrue(actual)
+        );
+    }
+
+    @Test
+    public void delete_ReturnsTrue_WhenObjectIsDeleted() {
+        //Arrange
+        UUID uuid = getId();
+
+        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(favouritePlace));
+        when(repository.save(favouritePlace)).thenReturn(favouritePlace);
+
+        FavouritePlaceService favouritePlaceService = getService();
+        //Act
+        boolean actual = favouritePlaceService.delete(uuid);
+
+        //Assert
+        assertAll(
+                () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(favouritePlace).setActive(false),
                 () -> verify(repository).save(favouritePlace),
                 () -> assertTrue(actual)
         );

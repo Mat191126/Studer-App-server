@@ -23,6 +23,25 @@ public abstract class CrudServiceTest <V>{
     protected abstract V getId();
 
     @Test
+    public void getAll_ReturnsFavouritePlaceList() {
+        //Arrange
+        CrudRepositoryMethods<? extends BaseEntityMethods<V>, V> repository = getRepositoryMock();
+
+        List<BaseEntityMethods<V>> expectedList = new ArrayList<>();
+
+        doReturn(new ArrayList<BaseEntityMethods<V>>()).when(repository).findAllByActive(true);
+        CrudService<? extends BaseEntityMethods<V>, V> service = getService();
+        //Act
+        List<BaseEntityMethods<V>> actualList = (List<BaseEntityMethods<V>>) service.getAll();
+
+        //Assert
+        assertAll(
+                () -> verify(repository).findAllByActive(eq(true)),
+                () -> assertEquals(expectedList, actualList)
+        );
+    }
+
+    @Test
     public void get_ReturnsFavouritePlaceObject_WhenIdGiven() {
         //Arrange
         CrudRepositoryMethods<? extends BaseEntityMethods<V>, V> repository = getRepositoryMock();
@@ -41,25 +60,6 @@ public abstract class CrudServiceTest <V>{
         assertAll(
                 () -> verify(repository).findByIdAndActive(eq(id), eq(true)),
                 () -> assertEquals(expected, actual)
-        );
-    }
-
-    @Test
-    public void getAll_ReturnsFavouritePlaceList() {
-        //Arrange
-        CrudRepositoryMethods<? extends BaseEntityMethods<V>, V> repository = getRepositoryMock();
-
-        List<BaseEntityMethods<V>> expectedList = new ArrayList<>();
-
-        doReturn(new ArrayList<BaseEntityMethods<V>>()).when(repository).findAllByActive(true);
-        CrudService<? extends BaseEntityMethods<V>, V> service = getService();
-        //Act
-        List<BaseEntityMethods<V>> actualList = (List<BaseEntityMethods<V>>) service.getAll();
-
-        //Assert
-        assertAll(
-                () -> verify(repository).findAllByActive(eq(true)),
-                () -> assertEquals(expectedList, actualList)
         );
     }
 }

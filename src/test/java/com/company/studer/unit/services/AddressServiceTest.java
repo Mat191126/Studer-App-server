@@ -35,29 +35,6 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
     }
 
     @Test
-    public void delete_ReturnsTrue_WhenObjectIsDeleted() {
-        //Arrange
-        UUID uuid = getId();
-        Location location = mock(Location.class);
-
-        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(address));
-        when(address.getLocation()).thenReturn(location);
-        when(repository.save(address)).thenReturn(address);
-
-        AddressService addressService = getService();
-        //Act
-        boolean actual = addressService.delete(uuid);
-
-        //Assert
-        assertAll(
-                () -> verify(repository).findByIdAndActive(uuid, true),
-                () -> verify(address).setActive(false),
-                () -> verify(repository).save(address),
-                () -> assertTrue(actual)
-        );
-    }
-
-    @Test
     public void update_ReturnsTrue_WhenObjectIsUpdated() {
         //Arrange
         UUID uuid = getId();
@@ -79,6 +56,29 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
                 () -> verify(address).setTown(address.getTown()),
                 () -> verify(address).setZipCode(address.getZipCode()),
                 () -> verify(address).setLocation(address.getLocation()),
+                () -> verify(repository).save(address),
+                () -> assertTrue(actual)
+        );
+    }
+
+    @Test
+    public void delete_ReturnsTrue_WhenObjectIsDeleted() {
+        //Arrange
+        UUID uuid = getId();
+        Location location = mock(Location.class);
+
+        when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(address));
+        when(address.getLocation()).thenReturn(location);
+        when(repository.save(address)).thenReturn(address);
+
+        AddressService addressService = getService();
+        //Act
+        boolean actual = addressService.delete(uuid);
+
+        //Assert
+        assertAll(
+                () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(address).setActive(false),
                 () -> verify(repository).save(address),
                 () -> assertTrue(actual)
         );
