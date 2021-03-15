@@ -18,6 +18,7 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
 
     private final AddressRepository repository = mock(AddressRepository.class);
     private final Address address = mock(Address.class);
+    private final LocationService locationService = mock(LocationService.class);
 
     @Override
     protected AddressRepository getRepositoryMock() {
@@ -26,7 +27,7 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
 
     @Override
     protected AddressService getService() {
-        return new AddressService(repository, mock(LocationService.class));
+        return new AddressService(repository, locationService);
     }
 
     @Override
@@ -69,6 +70,7 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
 
         when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(address));
         when(address.getLocation()).thenReturn(location);
+        when(location.getId()).thenReturn(uuid);
         when(repository.save(address)).thenReturn(address);
 
         AddressService addressService = getService();
@@ -78,6 +80,7 @@ public class AddressServiceTest extends CrudServiceTest<UUID> {
         //Assert
         assertAll(
                 () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(locationService).delete(uuid),
                 () -> verify(address).setActive(false),
                 () -> verify(repository).save(address),
                 () -> assertTrue(actual)

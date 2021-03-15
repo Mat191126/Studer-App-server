@@ -1,13 +1,10 @@
 package com.company.studer.unit.services;
 
 import com.company.studer.entities.Address;
-import com.company.studer.entities.FavouritePlace;
 import com.company.studer.entities.Place;
 import com.company.studer.entities.PlaceType;
 import com.company.studer.repositories.PlaceRepository;
 import com.company.studer.services.AddressService;
-import com.company.studer.services.FavouritePlaceService;
-import com.company.studer.services.LocationService;
 import com.company.studer.services.PlaceService;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +12,12 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 
 public class PlaceServiceTest extends CrudServiceTest<UUID> {
 
     private final PlaceRepository repository = mock(PlaceRepository.class);
     private final Place place = mock(Place.class);
+    private final AddressService addressService = mock(AddressService.class);
 
     @Override
     protected PlaceRepository getRepositoryMock() {
@@ -29,7 +26,7 @@ public class PlaceServiceTest extends CrudServiceTest<UUID> {
 
     @Override
     protected PlaceService getService() {
-        return new PlaceService(repository, mock(AddressService.class));
+        return new PlaceService(repository, addressService);
     }
 
     @Override
@@ -71,6 +68,7 @@ public class PlaceServiceTest extends CrudServiceTest<UUID> {
 
         when(repository.findByIdAndActive(uuid, true)).thenReturn(Optional.of(place));
         when(place.getAddress()).thenReturn(address);
+        when(address.getId()).thenReturn(uuid);
         when(repository.save(place)).thenReturn(place);
 
         PlaceService placeService = getService();
@@ -80,6 +78,7 @@ public class PlaceServiceTest extends CrudServiceTest<UUID> {
         //Assert
         assertAll(
                 () -> verify(repository).findByIdAndActive(uuid, true),
+                () -> verify(addressService).delete(uuid),
                 () -> verify(place).setActive(false),
                 () -> verify(repository).save(place),
                 () -> assertTrue(actual)
