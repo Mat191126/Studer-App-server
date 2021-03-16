@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class AddressService extends CrudService<Address, UUID, AddressRepository> {
+public class AddressService extends CrudService<Address, UUID> {
 
     private final LocationService locationService;
 
@@ -36,7 +36,7 @@ public class AddressService extends CrudService<Address, UUID, AddressRepository
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<Address> object = get(id);
         if (object.isPresent()) {
             Address oldObject = object.get();

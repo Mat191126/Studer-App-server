@@ -5,11 +5,11 @@ import com.company.studer.repositories.CrudRepositoryMethods;
 
 import java.util.Optional;
 
-public abstract class CrudService<T extends BaseEntityMethods<K>, K, R extends CrudRepositoryMethods<T, K>> implements BaseServiceMethods<T, K> {
+public abstract class CrudService<T extends BaseEntityMethods<K>, K> implements BaseServiceMethods<T, K> {
 
-    protected final R repository;
+    protected final CrudRepositoryMethods<T, K> repository;
 
-    public CrudService(R repository) {
+    public CrudService(CrudRepositoryMethods<T, K> repository) {
         this.repository = repository;
     }
 

@@ -11,13 +11,15 @@ import java.util.Set;
 import java.util.UUID;
 
 @Service
-public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
+public class PlaceService extends CrudService<Place, UUID> {
 
+    private PlaceRepository repository;
     private final AddressService addressService;
 
     @Autowired
     public PlaceService(PlaceRepository repository, AddressService addressService) {
         super(repository);
+        this.repository = repository;
         this.addressService = addressService;
     }
 
@@ -37,7 +39,7 @@ public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<Place> object = get(id);
         if (object.isPresent()) {
             Place oldObject = object.get();
@@ -50,7 +52,7 @@ public class PlaceService extends CrudService<Place, UUID, PlaceRepository> {
     }
 
     public Iterable<Place> getByPlaceTypes(Set<PlaceType> typeList) {
-        return repository.getPlaceByActiveAndPlaceTypesIn(true, typeList);
+        return repository.findPlaceByActiveAndPlaceTypesIn(true, typeList);
     }
 
 }

@@ -9,6 +9,6 @@ import java.util.UUID;
 @Repository
 public interface PlaceRepository extends CrudRepositoryMethods<Place, UUID> {
 
-    Iterable<Place> getPlaceByActiveAndPlaceTypesIn(boolean active, Iterable<PlaceType> placeTypes);
+    Iterable<Place> findPlaceByActiveAndPlaceTypesIn(boolean active, Iterable<PlaceType> placeTypes);
 
 }

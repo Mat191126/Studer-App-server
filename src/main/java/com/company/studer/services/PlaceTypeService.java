@@ -8,11 +8,14 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepository> {
+public class PlaceTypeService extends CrudService<PlaceType, Long> {
+
+    private final PlaceTypeRepository repository;
 
     @Autowired
     public PlaceTypeService(PlaceTypeRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
     @Override
@@ -28,7 +31,7 @@ public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepo
     }
 
     @Override
-    public final boolean delete(Long id) {
+    public boolean delete(Long id) {
         Optional<PlaceType> object = get(id);
         if (object.isPresent()) {
             PlaceType oldObject = object.get();
@@ -40,6 +43,6 @@ public class PlaceTypeService extends CrudService<PlaceType, Long, PlaceTypeRepo
     }
 
     public Optional<PlaceType> getByType(String type) {
-        return repository.getPlaceTypeByType(type);
+        return repository.findPlaceTypeByType(type);
     }
 }

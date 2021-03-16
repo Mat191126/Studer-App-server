@@ -9,11 +9,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, FavouritePlaceRepository> {
+public class FavouritePlaceService extends CrudService<FavouritePlace, UUID> {
+
+    private final FavouritePlaceRepository repository;
 
     @Autowired
     public FavouritePlaceService(FavouritePlaceRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
     @Override
@@ -30,7 +33,7 @@ public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, Fav
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<FavouritePlace> object = get(id);
         if (object.isPresent()) {
             FavouritePlace oldObject = object.get();
@@ -42,7 +45,7 @@ public class FavouritePlaceService extends CrudService<FavouritePlace, UUID, Fav
     }
 
     public Iterable<FavouritePlace> getByUserIdAndActive(UUID id) {
-        return repository.getByUserIdAndActive(id, true);
+        return repository.findByUserIdAndActive(id, true);
     }
 
 }

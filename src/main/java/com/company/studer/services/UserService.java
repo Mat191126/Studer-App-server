@@ -9,13 +9,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService extends CrudService<User, UUID, UserRepository> {
+public class UserService extends CrudService<User, UUID> {
 
+    private final UserRepository repository;
     private final LocationService locationService;
 
     @Autowired
     public UserService(UserRepository repository, LocationService locationService) {
         super(repository);
+        this.repository = repository;
         this.locationService = locationService;
     }
 
@@ -37,7 +39,7 @@ public class UserService extends CrudService<User, UUID, UserRepository> {
     }
 
     @Override
-    public final boolean delete(UUID id) {
+    public boolean delete(UUID id) {
         Optional<User> object = get(id);
         if (object.isPresent()) {
             User oldObject = object.get();
