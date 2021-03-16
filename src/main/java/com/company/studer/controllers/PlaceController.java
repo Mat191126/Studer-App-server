@@ -25,6 +25,8 @@ public class PlaceController {
     }
 
     @GetMapping
+    // latitude, longitude centrum mapy oraz promień (przekątna) w km w zależności od zooma
+    // i liczymy jakie punkty się znajdują w zasięgu mapy (promień przekątna)
     @ResponseStatus(HttpStatus.OK)
     private Iterable<Place> getAll() {
         return placeService.getAll();

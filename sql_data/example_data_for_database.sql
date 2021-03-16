@@ -17,18 +17,18 @@ INSERT INTO users (id, active, email, first_name, last_name, password, user_role
 VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 'tom@gmail.com', 'Tom', 'Clark', 'asd', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
        ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 'ann@onet.pl', 'Ann', 'Smith','asd', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003');
 
-INSERT INTO place_type (id, active, type)
-VALUES (1001, true, 'LIBRARIES'),
-       (1002, true, 'QUITE_SPACES'),
-       (1003, true, 'COPY_PLACES'),
-       (1004, true, 'INEXPENSIVE_RESTAURANTS'),
-       (1005, true, 'COFFEE_SHOPS'),
-       (1006, true, 'STUDENT_PUBS'),
-       (1007, true, 'MOVIE_THEATERS'),
-       (1008, true, 'BOOKSTORES'),
-       (1009, true, 'DRUGSTORES'),
-       (1010, true, 'PARKS_GREEN_SPACES'),
-       (1011, true, 'PSYCHOTHERAPISTS');
+INSERT INTO place_type (id, active, type, name)
+VALUES (1001, true, 'LIBRARIES', 'Libraries'),
+       (1002, true, 'QUITE_SPACES', 'Quite spaces'),
+       (1003, true, 'COPY_PLACES', 'Copy places'),
+       (1004, true, 'INEXPENSIVE_RESTAURANTS', 'Inexpensive restaurants'),
+       (1005, true, 'COFFEE_SHOPS', 'Coffee shops'),
+       (1006, true, 'STUDENT_PUBS', 'Student pubs'),
+       (1007, true, 'MOVIE_THEATERS', 'Movie theaters'),
+       (1008, true, 'BOOKSTORES', 'Bookstores'),
+       (1009, true, 'DRUGSTORES', 'Drugstores'),
+       (1010, true, 'PARKS_GREEN_SPACES', 'Parks and green spaces'),
+       (1011, true, 'PSYCHOTHERAPISTS', 'Psychotherapists');
 
 INSERT INTO address (id, active, street, street_number, town, zip_code, location_id)
 VALUES ('ed14e978-76a6-11eb-9439-0242ac130002', true, 'Warszawska', '24', 'Kraków', '31-155', '235524ea-76a6-11eb-9439-0242ac130002'),
