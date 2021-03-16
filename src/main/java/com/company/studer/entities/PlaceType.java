@@ -21,6 +21,9 @@ public class PlaceType implements BaseEntityMethods<Long> {
     @NotNull
     private String type;
 
+    @NotNull
+    private String name;
+
     @JsonIgnore
     @NotNull
     private boolean active = true;

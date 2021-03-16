@@ -38,6 +38,12 @@ public class PlaceController {
         );
     }
 
+    @GetMapping("/type")
+    @ResponseStatus(HttpStatus.OK)
+    private Iterable<PlaceType> getById() {
+        return placeTypeService.getAll();
+    }
+
     @GetMapping("/type/{type_list}")
     @ResponseStatus(HttpStatus.OK)
     private Iterable<Place> getByPlaceTypes(@PathVariable Set<String> type_list) {
