@@ -1,6 +1,8 @@
 package com.company.studer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +26,8 @@ public class Location implements BaseEntityMethods<UUID> {
     @Column( columnDefinition = "uuid", updatable = false )
     private UUID id;
 
+    @JsonSerialize(using = PointToJsonSerializer.class)
+    @JsonDeserialize(using = JsonToPointDeserializer.class)
     private Point point;
 
     @JsonIgnore
