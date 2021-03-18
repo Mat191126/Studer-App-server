@@ -6,6 +6,7 @@ import com.company.studer.repositories.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -55,11 +56,11 @@ public class PlaceService extends CrudService<Place, UUID> {
         return repository.findPlaceByActiveAndPlaceTypesIn(true, typeList);
     }
 
-    public Iterable<Place> getByPlaceTypesInRadius(Set<PlaceType> typeList, int centerLatitude,
-                                                   int centerLongitude, int radius) {
+    public Iterable<Place> getByPlaceTypesInRadius(Set<PlaceType> typeList, String centerLatitude,
+                                                   String centerLongitude, int radius) {
 
         String mapCenter = String.format("POINT (%s %s)", centerLatitude, centerLongitude);
-        return repository.findPlaceByActiveAndTypesInRadius(true, typeList, mapCenter, radius);
+        return repository.findPlaceByActiveAndTypesInRadius(mapCenter, radius, true, typeList);
     }
 
 }
