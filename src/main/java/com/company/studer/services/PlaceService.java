@@ -55,4 +55,11 @@ public class PlaceService extends CrudService<Place, UUID> {
         return repository.findPlaceByActiveAndPlaceTypesIn(true, typeList);
     }
 
+    public Iterable<Place> getByPlaceTypesInRadius(Set<PlaceType> typeList, int centerLatitude,
+                                                   int centerLongitude, int radius) {
+
+        String mapCenter = String.format("POINT (%s %s)", centerLatitude, centerLongitude);
+        return repository.findPlaceByActiveAndTypesInRadius(true, typeList, mapCenter, radius);
+    }
+
 }
