@@ -11,8 +11,8 @@ import java.util.UUID;
 @Repository
 public interface PlaceRepository extends CrudRepositoryMethods<Place, UUID> {
     String statement = """
-            SELECT place.id, place.description, place.name,
-                  a.id, a.street, a.street_number, a.town, a.zip_code,
+            SELECT place.id, place.active, place.description, place.name,
+                  a.id as address_id,
                   ptl.place_type_id, pt.type, l.id, l.point
             FROM place
                     LEFT JOIN address a on a.id = place.address_id
@@ -20,10 +20,10 @@ public interface PlaceRepository extends CrudRepositoryMethods<Place, UUID> {
                     LEFT JOIN place_type pt on pt.id = ptl.place_type_id
                     LEFT JOIN location l on l.id = a.location_id
             WHERE ST_DWithin(l.point::geography,
-                            ST_GeogFromText(:center),
-                            :radius, false)
-             AND place.active = :active
-             AND pt.type in (:types)
+                             ST_GeogFromText(:center),
+                             :radius, false)
+              AND place.active = :active
+              AND pt.type in (:types)
             """;
 
     Iterable<Place> findPlaceByActiveAndPlaceTypesIn(boolean active, Iterable<PlaceType> placeTypes);
