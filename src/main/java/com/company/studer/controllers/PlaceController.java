@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -25,8 +26,6 @@ public class PlaceController {
     }
 
     @GetMapping
-    // latitude, longitude centrum mapy oraz promień (przekątna) w km w zależności od zooma
-    // i liczymy jakie punkty się znajdują w zasięgu mapy (promień przekątna)
     @ResponseStatus(HttpStatus.OK)
     private Iterable<Place> getAll() {
         return placeService.getAll();
@@ -56,6 +55,22 @@ public class PlaceController {
             ));
         }
         return placeService.getByPlaceTypes(placeTypes);
+    }
+
+    @GetMapping("/type/radius/{type_list}")
+    @ResponseStatus(HttpStatus.OK)
+    private Iterable<Place> getByPlaceTypesInRadius(@PathVariable Set<String> type_list,
+                                                    @RequestParam String centerLatitude,
+                                                    @RequestParam String centerLongitude,
+                                                    @RequestParam String radius) {
+        Set<PlaceType> placeTypes = new HashSet<>();
+        for (String placeTypeString : type_list) {
+            placeTypes.add(placeTypeService.getByType(placeTypeString).orElseThrow(
+                    () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+            ));
+        }
+        int radiusInteger = Integer.parseInt(radius);
+        return placeService.getByPlaceTypesInRadius(placeTypes, centerLatitude, centerLongitude, radiusInteger);
     }
 
     @PostMapping

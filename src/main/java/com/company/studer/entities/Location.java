@@ -1,17 +1,18 @@
 package com.company.studer.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
+import org.locationtech.jts.geom.Point;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -21,17 +22,13 @@ import java.util.UUID;
 public class Location implements BaseEntityMethods<UUID> {
 
     @Id
-    @Type(type = "pg-uuid")
     @GeneratedValue
+    @Column( columnDefinition = "uuid", updatable = false )
     private UUID id;
 
-    @NotNull
-    @Column(precision = 8, scale = 6)
-    private BigDecimal latitude;
-
-    @NotNull
-    @Column(precision = 8, scale = 6)
-    private BigDecimal longitude;
+    @JsonSerialize(using = PointToJsonSerializer.class)
+    @JsonDeserialize(using = JsonToPointDeserializer.class)
+    private Point point;
 
     @JsonIgnore
     @NotNull

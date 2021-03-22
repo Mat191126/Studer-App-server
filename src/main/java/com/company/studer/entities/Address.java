@@ -17,8 +17,8 @@ import java.util.UUID;
 public class Address implements BaseEntityMethods<UUID> {
 
     @Id
-    @Type(type = "pg-uuid")
     @GeneratedValue
+    @Column( columnDefinition = "uuid", updatable = false )
     private UUID id;
 
     @NotNull
