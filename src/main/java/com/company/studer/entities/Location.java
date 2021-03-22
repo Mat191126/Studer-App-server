@@ -28,7 +28,7 @@ public class Location implements BaseEntityMethods<UUID> {
 
     @JsonSerialize(using = PointToJsonSerializer.class)
     @JsonDeserialize(using = JsonToPointDeserializer.class)
-    private Point pointCoordinates;
+    private Point point;
 
     @JsonIgnore
     @NotNull
