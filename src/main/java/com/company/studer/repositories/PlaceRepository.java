@@ -13,13 +13,13 @@ public interface PlaceRepository extends CrudRepositoryMethods<Place, UUID> {
     String statement = """
              SELECT place.id, place.active, place.description, place.name,
                    a.id as address_id,
-                   ptl.place_type_id, pt.type, l.id, l.point
+                   ptl.place_type_id, pt.type, l.id, l.point_coordinates
              FROM place
                      LEFT JOIN address a on a.id = place.address_id
                      LEFT JOIN place_types_list ptl on place.id = ptl.place_id
                      LEFT JOIN place_type pt on pt.id = ptl.place_type_id
                      LEFT JOIN location l on l.id = a.location_id
-             WHERE ST_DWithin(CAST (l.point AS geography),
+             WHERE ST_DWithin(CAST (l.point_coordinates AS geography),
                               ST_GeogFromText(:center),
                               :radius, false)
                AND place.active = :active

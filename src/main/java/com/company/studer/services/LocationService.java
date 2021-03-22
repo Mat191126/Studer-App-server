@@ -21,7 +21,7 @@ public class LocationService extends CrudService<Location, UUID> {
         Optional<Location> oldAddressOptional = get(newLocation.getId());
         if (oldAddressOptional.isPresent()) {
             Location oldLocation = oldAddressOptional.get();
-            oldLocation.setPoint(newLocation.getPoint());
+            oldLocation.setPointCoordinates(newLocation.getPointCoordinates());
             add(oldLocation);
             return true;
         }

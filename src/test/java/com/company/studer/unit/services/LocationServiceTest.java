@@ -49,7 +49,7 @@ public class LocationServiceTest extends CrudServiceTest<UUID> {
         //Assert
         assertAll(
                 () -> verify(repository).findByIdAndActive(uuid, true),
-                () -> verify(location).setPoint(location.getPoint()),
+                () -> verify(location).setPointCoordinates(location.getPointCoordinates()),
                 () -> verify(repository).save(location),
                 () -> assertTrue(actual)
         );

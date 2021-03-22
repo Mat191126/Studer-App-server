@@ -1,4 +1,4 @@
-INSERT INTO location (id, active, point)
+INSERT INTO location (id, active, point_coordinates)
 VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859)'),
        ('2355272e-76a6-11eb-9439-0242ac130002', true, 'POINT(50.043740 19.951120)'),
        ('2355281e-76a6-11eb-9439-0242ac130002', true, 'POINT(50.0670 19.9294)'),
