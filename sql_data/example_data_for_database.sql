@@ -100,3 +100,8 @@ VALUES ('a1327e94-76ab-11eb-9439-0242ac130002', true, 'f166745e-76a8-11eb-9439-0
        ('a1328420-76ab-11eb-9439-0242ac130002', true, 'f1667878-76a8-11eb-9439-0242ac130002', 'b388fa0a-76a6-11eb-9439-0242ac130002'),
        ('a13284f2-76ab-11eb-9439-0242ac130002', true, 'f1667a30-76a8-11eb-9439-0242ac130002', 'b388fa0a-76a6-11eb-9439-0242ac130002'),
        ('a13285b0-76ab-11eb-9439-0242ac130002', true, 'f166afaa-76a8-11eb-9439-0242ac130002', 'b388fcbc-76a6-11eb-9439-0242ac130002');
+
+INSERT INTO advertisement (id, active, user_id, title, description)
+VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Buddy needed', 'Hi, Im Tom. I want to find good english speaking person'),
+       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Hi, Im Ann. I have problem with some staff')
+
