@@ -71,7 +71,7 @@ VALUES ('f166745e-76a8-11eb-9439-0242ac130002', true, 'You can copy everything y
        ('00d2bdba-8bc8-11eb-8dcd-0242ac130003', true, 'Library of the Jagiellonian University in Kraków.', 'Jagiellonian Library', 'd7efbec2-8bc5-11eb-8dcd-0242ac130003'),
        ('00d2bec8-8bc8-11eb-8dcd-0242ac130003', true, 'Fast and professional service, friendly staff and tasty food.', 'Saffron', 'd7efbfb2-8bc5-11eb-8dcd-0242ac130003'),
        ('00d2c4b8-8bc8-11eb-8dcd-0242ac130003', true, 'Great cinema, the visibility for the screen is very good.', 'Cinema City Krakow Zakopianka', 'd7efc07a-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2c5d0-8bc8-11eb-8dcd-0242ac130003', true, 'Good place to buy any cosmetics and medics.', 'Super-Pharm', 'd7efc156-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2c5d0-8bc8-11eb-8dcd-0242ac130003', true, 'Good place to buy any cosmetics and drugs.', 'Super-Pharm', 'd7efc156-8bc5-11eb-8dcd-0242ac130003'),
        ('00d2c738-8bc8-11eb-8dcd-0242ac130003', true, 'Rapid diagnosis made correctly, a very helpful place.', 'Psychotherapy in English/Turkish', '2c5b1410-8bc7-11eb-8dcd-0242ac130003');
 
 INSERT INTO place_types_list (place_id, place_type_id)
