@@ -60,19 +60,19 @@ VALUES ('f166745e-76a8-11eb-9439-0242ac130002', true, 'You can copy everything y
        ('f1667760-76a8-11eb-9439-0242ac130002', true, 'We have English-speaking staff.', 'Ksero Serwis Kraków Drukarnia Druk Skan Wielkoformatowy', 'ed14ebe4-76a6-11eb-9439-0242ac130002'),
        ('f1667878-76a8-11eb-9439-0242ac130002', true, 'Copying, lamination, printing, office supplies.', 'Ksero i druk ATLANTYDA', 'ed14ecca-76a6-11eb-9439-0242ac130002'),
        ('f166795e-76a8-11eb-9439-0242ac130002', true, 'Have problem with buying English books? Come to our store!', 'American Bookstore Księgarnia Amerykańska', 'ed14ed88-76a6-11eb-9439-0242ac130002'),
-       ('f1667a30-76a8-11eb-9439-0242ac130002', true, 'The best place to buy English books and drink a delicious coffee', 'Massolit Books', 'ed14ee64-76a6-11eb-9439-0242ac130002'),
+       ('f1667a30-76a8-11eb-9439-0242ac130002', true, 'The best place to buy English books and drink a delicious coffee.', 'Massolit Books', 'ed14ee64-76a6-11eb-9439-0242ac130002'),
        ('f166afaa-76a8-11eb-9439-0242ac130002', true, 'Vast meadow adjacent to the historic centre of the city.', 'Błonia', 'ed14ef22-76a6-11eb-9439-0242ac130002'),
        ('f166afab-76a8-11eb-9439-0242ac130002', true, 'The park was created in the vicinity of an old quarry.', 'Park Bednarskiego', 'ed14ef14-76a6-11eb-9439-0242ac130002'),
-       ('f166afdb-76a8-11eb-9439-0242ac130002', true, 'One of Cracow’s youngest parks,', 'Park Dębnicki', 'ed14ef34-76a6-11eb-9439-0242ac130002'),
-       ('9498c812-8260-11eb-8dcd-0242ac130003', true, 'You can listen to ska, reggae, punk and rockabilly', 'PUB Propaganda', '5becce28-8260-11eb-8dcd-0242ac130003'),
-       ('f16677ef-76a8-11eb-9439-0242ac130002', true, 'Music club whose gothic cellars will also be a perfect backdrop for conferences and corporate events', 'Louis Music Club & Pub', '5becd080-8260-11eb-8dcd-0242ac130003'),
-       ('b45c41ce-8260-11eb-8dcd-0242ac130003', true, 'Pub with great atmosphere and reggae music', 'Free Pub', '5becd418-8260-11eb-8dcd-0242ac130003'),
-       ('00d2bb08-8bc8-11eb-8dcd-0242ac130003', true, 'Go somewhere quiet and cozy to read a few pages from your favorite book', 'Arteteka Regional Public Library in Krakow', 'd7efbc4c-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2bdba-8bc8-11eb-8dcd-0242ac130003', true, 'Library of the Jagiellonian University in Kraków', 'Jagiellonian Library', 'd7efbec2-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2bec8-8bc8-11eb-8dcd-0242ac130003', true, 'Fast and professional service, friendly staff and tasty food', 'Saffron', 'd7efbfb2-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2c4b8-8bc8-11eb-8dcd-0242ac130003', true, 'Great cinema, the visibility for the screen is very good', 'Cinema City Krakow Zakopianka', 'd7efc07a-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2c5d0-8bc8-11eb-8dcd-0242ac130003', true, 'Good place to buy any cosmetics and medics', 'Super-Pharm', 'd7efc156-8bc5-11eb-8dcd-0242ac130003'),
-       ('00d2c738-8bc8-11eb-8dcd-0242ac130003', true, 'Rapid diagnosis made correctly, a very helpful place,', 'Psychotherapy in English/Turkish', '2c5b1410-8bc7-11eb-8dcd-0242ac130003');
+       ('f166afdb-76a8-11eb-9439-0242ac130002', true, 'One of Cracow’s youngest parks.', 'Park Dębnicki', 'ed14ef34-76a6-11eb-9439-0242ac130002'),
+       ('9498c812-8260-11eb-8dcd-0242ac130003', true, 'You can listen to ska, reggae, punk and rockabilly.', 'PUB Propaganda', '5becce28-8260-11eb-8dcd-0242ac130003'),
+       ('f16677ef-76a8-11eb-9439-0242ac130002', true, 'Music club whose gothic cellars will also be a perfect backdrop for conferences and corporate events.', 'Louis Music Club & Pub', '5becd080-8260-11eb-8dcd-0242ac130003'),
+       ('b45c41ce-8260-11eb-8dcd-0242ac130003', true, 'Pub with great atmosphere and reggae music.', 'Free Pub', '5becd418-8260-11eb-8dcd-0242ac130003'),
+       ('00d2bb08-8bc8-11eb-8dcd-0242ac130003', true, 'Go somewhere quiet and cozy to read a few pages from your favorite book.', 'Arteteka Regional Public Library in Krakow', 'd7efbc4c-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2bdba-8bc8-11eb-8dcd-0242ac130003', true, 'Library of the Jagiellonian University in Kraków.', 'Jagiellonian Library', 'd7efbec2-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2bec8-8bc8-11eb-8dcd-0242ac130003', true, 'Fast and professional service, friendly staff and tasty food.', 'Saffron', 'd7efbfb2-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2c4b8-8bc8-11eb-8dcd-0242ac130003', true, 'Great cinema, the visibility for the screen is very good.', 'Cinema City Krakow Zakopianka', 'd7efc07a-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2c5d0-8bc8-11eb-8dcd-0242ac130003', true, 'Good place to buy any cosmetics and medics.', 'Super-Pharm', 'd7efc156-8bc5-11eb-8dcd-0242ac130003'),
+       ('00d2c738-8bc8-11eb-8dcd-0242ac130003', true, 'Rapid diagnosis made correctly, a very helpful place.', 'Psychotherapy in English/Turkish', '2c5b1410-8bc7-11eb-8dcd-0242ac130003');
 
 INSERT INTO place_types_list (place_id, place_type_id)
 VALUES ('f166745e-76a8-11eb-9439-0242ac130002', 1003),
@@ -102,6 +102,6 @@ VALUES ('a1327e94-76ab-11eb-9439-0242ac130002', true, 'f166745e-76a8-11eb-9439-0
        ('a13285b0-76ab-11eb-9439-0242ac130002', true, 'f166afaa-76a8-11eb-9439-0242ac130002', 'b388fcbc-76a6-11eb-9439-0242ac130002');
 
 INSERT INTO advertisement (id, active, user_id, title, description)
-VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland'),
+VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
        ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.')
 
