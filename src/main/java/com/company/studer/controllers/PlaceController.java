@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/place")
@@ -70,6 +68,12 @@ public class PlaceController {
         }
         int radiusInteger = Integer.parseInt(radius);
         return placeService.getByPlaceTypesInRadius(placeTypes, centerLatitude, centerLongitude, radiusInteger);
+    }
+
+    @GetMapping("/type/radius")
+    @ResponseStatus(HttpStatus.OK)
+    private Iterable<Place> getWithoutPlaceTypesInRadius() {
+        return Collections.emptyList();
     }
 
     @PostMapping
