@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public interface PlaceRepository extends CrudRepositoryMethods<Place, UUID> {
     String statement = """
-             SELECT place.id, place.active, place.description, place.name,
+             SELECT DISTINCT ON (place.id) place.id, place.active, place.description, place.name,
                    a.id as address_id,
                    ptl.place_type_id, pt.type, l.id, l.point
              FROM place
