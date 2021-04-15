@@ -1,11 +1,13 @@
 package com.company.studer.controllers;
 
 import com.company.studer.entities.Advertisement;
+import com.company.studer.entities.Phrase;
 import com.company.studer.services.AdvertisementService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -30,6 +32,12 @@ public class AdvertisementController {
         return advertisementService.get(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
         );
+    }
+
+    @GetMapping("/search/{phrases}")
+    @ResponseStatus(HttpStatus.OK)
+    private List<Phrase> searchForPrompt(@PathVariable List<String> phrases) {
+        return advertisementService.getPromptsByPhrases(phrases);
     }
 
     @PostMapping

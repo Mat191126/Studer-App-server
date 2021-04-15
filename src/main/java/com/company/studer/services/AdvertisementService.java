@@ -1,17 +1,25 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.Advertisement;
+import com.company.studer.entities.Phrase;
+import com.company.studer.entities.PhraseCategory;
 import com.company.studer.repositories.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class AdvertisementService extends CrudService<Advertisement, UUID> {
 
+    private final AdvertisementRepository repository;
+
     public AdvertisementService(AdvertisementRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
     @Override
@@ -38,5 +46,24 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
             return true;
         }
         return false;
+    }
+
+    private List<String> getAdvertisementCitiesByActiveAndUserCityContaining(String city) {
+        List<Advertisement> advertisements = repository.findDistinctFirstAdvertisementsByActiveAndUserCityContaining(true, city);
+        return advertisements.stream()
+                             .map(advertisement -> advertisement.getUser().getCity())
+                             .collect(Collectors.toList());
+    }
+
+    public List<Phrase> getPromptsByPhrases(List<String> phrases) {
+        List<Phrase> foundPhrases = new ArrayList<>();
+        for (String phrase : phrases) {
+            List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(phrase);
+            for (String city : citiesMatch) {
+                foundPhrases.add(new Phrase(city, PhraseCategory.CITY));
+            }
+        }
+
+        return foundPhrases;
     }
 }
