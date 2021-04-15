@@ -109,7 +109,7 @@ VALUES ('a1327e94-76ab-11eb-9439-0242ac130002', true, 'f166745e-76a8-11eb-9439-0
        ('a13284f2-76ab-11eb-9439-0242ac130002', true, 'f1667a30-76a8-11eb-9439-0242ac130002', 'b388fa0a-76a6-11eb-9439-0242ac130002'),
        ('a13285b0-76ab-11eb-9439-0242ac130002', true, 'f166afaa-76a8-11eb-9439-0242ac130002', 'b388fcbc-76a6-11eb-9439-0242ac130002');
 
-INSERT INTO advertisement (id, active, user_id, title, description)
-VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
-       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.')
+INSERT INTO advertisement (id, active, create_date, user_id, title, description)
+VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
+       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.')
 

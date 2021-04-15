@@ -41,6 +41,8 @@ public class User implements BaseEntityMethods<UUID> {
     @Column(name = "language")
     private Set<Language> langues;
 
+    private String photo;
+
     @NotNull
     private String email;
     @NotNull
