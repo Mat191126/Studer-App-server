@@ -5,9 +5,9 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -26,6 +26,21 @@ public class User implements BaseEntityMethods<UUID> {
     private String firstName;
     @NotNull
     private String lastName;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Sex sex;
+    @NotNull
+    private int age;
+
+    private String university;
+
+    @ElementCollection(targetClass = Language.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_languages",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "language")
+    private Set<Language> langues;
+
     @NotNull
     private String email;
     @NotNull

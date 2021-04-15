@@ -19,9 +19,17 @@ VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859
        ('4734c0e0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0395 19.9412)'),
        ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)');
 
-INSERT INTO users (id, active, email, first_name, last_name, password, user_role, location_id)
-VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 'tom@gmail.com', 'Tom', 'Clark', 'asd', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
-       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 'ann@onet.pl', 'Ann', 'Smith','asd', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003');
+INSERT INTO users (id, active, age, email, first_name, last_name, password, sex, university, user_role, location_id)
+VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 23, 'tom@gmail.com', 'Tom', 'Clark', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
+       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 25, 'ann@onet.pl', 'Ann', 'Smith','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003');
+
+
+INSERT INTO user_languages (user_id, language)
+VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', 'FRENCH'),
+       ('b388fa0a-76a6-11eb-9439-0242ac130002', 'ITALIAN'),
+       ('b388fa0a-76a6-11eb-9439-0242ac130002', 'SPANISH'),
+       ('b388fcbc-76a6-11eb-9439-0242ac130002', 'GERMAN'),
+       ('b388fcbc-76a6-11eb-9439-0242ac130002', 'POLISH');
 
 INSERT INTO place_type (id, active, type, name)
 VALUES (1001, true, 'LIBRARIES', 'Libraries'),
