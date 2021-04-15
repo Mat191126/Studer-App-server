@@ -66,4 +66,8 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
 
         return foundPhrases;
     }
+
+    public List<Advertisement> getAdvertisementsByActiveAndUserCity(String city) {
+        return repository.findAdvertisementsByActiveAndUserCity(true, city);
+    }
 }

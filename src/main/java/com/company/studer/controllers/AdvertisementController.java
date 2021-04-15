@@ -40,6 +40,12 @@ public class AdvertisementController {
         return advertisementService.getPromptsByPhrases(phrases);
     }
 
+    @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    private List<Advertisement> searchForPrompt(@RequestParam String city) {
+        return advertisementService.getAdvertisementsByActiveAndUserCity(city);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     protected Advertisement addNewObject(@RequestBody Advertisement advertisement) {

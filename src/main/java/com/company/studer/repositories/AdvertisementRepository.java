@@ -10,4 +10,6 @@ import java.util.UUID;
 public interface AdvertisementRepository extends CrudRepositoryMethods<Advertisement, UUID> {
 
     List<Advertisement> findDistinctFirstAdvertisementsByActiveAndUserCityContaining(boolean active, String user_city);
+
+    List<Advertisement> findAdvertisementsByActiveAndUserCity(boolean active, String user_city);
 }
