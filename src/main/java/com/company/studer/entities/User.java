@@ -34,6 +34,8 @@ public class User implements BaseEntityMethods<UUID> {
 
     private String university;
 
+    private String city;
+
     @ElementCollection(targetClass = Language.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_languages",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
