@@ -55,12 +55,23 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
                              .collect(Collectors.toList());
     }
 
+    private List<String> getAdvertisementUniversitiesByActiveAndUserUniversityContaining(String university) {
+        List<Advertisement> advertisements = repository.findDistinctFirstAdvertisementsByActiveAndUserUniversityContaining(true, university);
+        return advertisements.stream()
+                .map(advertisement -> advertisement.getUser().getUniversity())
+                .collect(Collectors.toList());
+    }
+
     public List<Phrase> getPromptsByPhrases(List<String> phrases) {
         List<Phrase> foundPhrases = new ArrayList<>();
         for (String phrase : phrases) {
             List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(phrase);
             for (String city : citiesMatch) {
                 foundPhrases.add(new Phrase(city, PhraseCategory.CITY));
+            }
+            List<String> universitiesMatch = getAdvertisementUniversitiesByActiveAndUserUniversityContaining(phrase);
+            for (String university : universitiesMatch) {
+                foundPhrases.add(new Phrase(university, PhraseCategory.UNIVERSITY));
             }
         }
 
