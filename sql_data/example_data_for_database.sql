@@ -19,7 +19,7 @@ VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859
        ('4734c0e0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0395 19.9412)'),
        ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)');
 
-INSERT INTO users (id, active, age, city, email, first_name, last_name, password, sex, university, user_role, location_id)
+INSERT INTO users (id, active, age, city, email, first_name, last_name, password, gender, university, user_role, location_id)
 VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 23, 'Kraków', 'tom@gmail.com', 'Tom', 'Clark', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
        ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 25, 'Kraków', 'ann@onet.pl', 'Ann', 'Smith','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003');
 

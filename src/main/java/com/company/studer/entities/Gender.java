@@ -1,5 +1,5 @@
 package com.company.studer.entities;
 
-public enum Sex {
+public enum Gender {
     MALE, FEMALE, OTHER, NOT_CHOSEN
 }

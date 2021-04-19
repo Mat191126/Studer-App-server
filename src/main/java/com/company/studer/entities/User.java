@@ -28,7 +28,7 @@ public class User implements BaseEntityMethods<UUID> {
     private String lastName;
     @NotNull
     @Enumerated(EnumType.STRING)
-    private Sex sex;
+    private Gender gender;
     @NotNull
     private int age;
 
