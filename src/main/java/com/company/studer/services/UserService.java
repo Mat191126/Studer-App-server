@@ -51,4 +51,12 @@ public class UserService extends CrudService<User, UUID> {
         return false;
     }
 
+    public int getMinimumUserAge() {
+        return repository.findFirstByActiveOrderByAgeAsc(true).getAge();
+    }
+
+    public int getMaximumUserAge() {
+        return repository.findFirstByActiveOrderByAgeDesc(true).getAge();
+    }
+
 }

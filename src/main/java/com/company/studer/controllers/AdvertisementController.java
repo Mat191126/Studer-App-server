@@ -1,12 +1,12 @@
 package com.company.studer.controllers;
 
-import com.company.studer.entities.Advertisement;
-import com.company.studer.entities.Phrase;
+import com.company.studer.entities.*;
 import com.company.studer.services.AdvertisementService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,9 +15,11 @@ import java.util.UUID;
 public class AdvertisementController {
 
     private final AdvertisementService advertisementService;
+    private final CriteriaFactory criteriaFactory;
 
-    public AdvertisementController(AdvertisementService userService) {
+    public AdvertisementController(AdvertisementService userService, CriteriaFactory criteriaFactory) {
         this.advertisementService = userService;
+        this.criteriaFactory = criteriaFactory;
     }
 
     @GetMapping
@@ -44,6 +46,16 @@ public class AdvertisementController {
     @ResponseStatus(HttpStatus.OK)
     private List<Advertisement> searchForPrompt(@RequestParam String city) {
         return advertisementService.getAdvertisementsByActiveAndUserCity(city);
+    }
+
+    @GetMapping("/criteria")
+    @ResponseStatus(HttpStatus.OK)
+    private List<Criteria> getCriteriaList() {
+        List<Criteria> criteria = new ArrayList<>();
+        criteria.addAll(criteriaFactory.create(CriteriaType.AGE));
+        criteria.addAll(criteriaFactory.create(CriteriaType.GENDER));
+        criteria.addAll(criteriaFactory.create(CriteriaType.LANGUAGE));
+        return criteria;
     }
 
     @PostMapping
