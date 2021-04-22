@@ -9,9 +9,9 @@ import java.util.UUID;
 @Repository
 public interface AdvertisementRepository extends CrudRepositoryMethods<Advertisement, UUID> {
 
-    List<Advertisement> findDistinctFirstAdvertisementsByActiveAndUserCityContaining(boolean active, String userCity);
+    List<Advertisement> findDistinctAdvertisementsByActiveAndUserCityStartsWith(boolean active, String userCity);
 
-    List<Advertisement> findDistinctFirstAdvertisementsByActiveAndUserUniversityContaining(boolean active, String userUniversity);
+    List<Advertisement> findDistinctAdvertisementsByActiveAndUserUniversityStartsWith(boolean active, String userUniversity);
 
     List<Advertisement> findAdvertisementsByActiveAndUserCity(boolean active, String user_city);
 }

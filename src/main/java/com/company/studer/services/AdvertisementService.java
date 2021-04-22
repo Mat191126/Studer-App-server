@@ -6,10 +6,7 @@ import com.company.studer.entities.PhraseCategory;
 import com.company.studer.repositories.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,30 +46,40 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
     }
 
     private List<String> getAdvertisementCitiesByActiveAndUserCityContaining(String city) {
-        List<Advertisement> advertisements = repository.findDistinctFirstAdvertisementsByActiveAndUserCityContaining(true, city);
+        List<Advertisement> advertisements = repository.findDistinctAdvertisementsByActiveAndUserCityStartsWith(true, city);
         return advertisements.stream()
                              .map(advertisement -> advertisement.getUser().getCity())
                              .collect(Collectors.toList());
     }
 
     private List<String> getAdvertisementUniversitiesByActiveAndUserUniversityContaining(String university) {
-        List<Advertisement> advertisements = repository.findDistinctFirstAdvertisementsByActiveAndUserUniversityContaining(true, university);
+        List<Advertisement> advertisements = repository.findDistinctAdvertisementsByActiveAndUserUniversityStartsWith(true, university);
         return advertisements.stream()
                 .map(advertisement -> advertisement.getUser().getUniversity())
                 .collect(Collectors.toList());
     }
 
-    public List<Phrase> getPromptsByPhrases(List<String> phrases) {
-        List<Phrase> foundPhrases = new ArrayList<>();
-        for (String phrase : phrases) {
-            List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(phrase);
-            for (String city : citiesMatch) {
-                foundPhrases.add(new Phrase(city, PhraseCategory.CITY));
+    public Set<String> getPromptsByPhrases(List<String> phrases) {
+        Set<String> foundPhrases = new HashSet<>();
+        String lastPhraseToCheck = phrases.get(phrases.size() - 1);
+        StringBuilder checkedPhrasesBuilder = new StringBuilder();
+
+        if (phrases.size() > 1) {
+            for (int phraseIndex = 0; phraseIndex < phrases.size() - 1; phraseIndex++) {
+                String checkedPhrase = phrases.get(phraseIndex);
+                checkedPhrasesBuilder.append(checkedPhrase);
+                checkedPhrasesBuilder.append(" ");
             }
-            List<String> universitiesMatch = getAdvertisementUniversitiesByActiveAndUserUniversityContaining(phrase);
-            for (String university : universitiesMatch) {
-                foundPhrases.add(new Phrase(university, PhraseCategory.UNIVERSITY));
-            }
+        }
+        String checkedPhrases = checkedPhrasesBuilder.toString();
+
+        List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(lastPhraseToCheck);
+        for (String city : citiesMatch) {
+            foundPhrases.add(checkedPhrases + city);
+        }
+        List<String> universitiesMatch = getAdvertisementUniversitiesByActiveAndUserUniversityContaining(lastPhraseToCheck);
+        for (String university : universitiesMatch) {
+            foundPhrases.add(checkedPhrases + university);
         }
 
         return foundPhrases;

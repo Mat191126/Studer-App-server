@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/advertisement")
@@ -38,14 +36,14 @@ public class AdvertisementController {
 
     @GetMapping("/search/{phrases}")
     @ResponseStatus(HttpStatus.OK)
-    private List<Phrase> searchForPrompt(@PathVariable List<String> phrases) {
+    private Set<String> searchForPrompt(@PathVariable List<String> phrases) {
         return advertisementService.getPromptsByPhrases(phrases);
     }
 
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    private List<Advertisement> searchForPrompt(@RequestParam String city) {
-        return advertisementService.getAdvertisementsByActiveAndUserCity(city);
+    private List<Advertisement> searchWithCriteria(@RequestParam List<Criteria> criteriaList) {
+        return Collections.emptyList();
     }
 
     @GetMapping("/criteria")

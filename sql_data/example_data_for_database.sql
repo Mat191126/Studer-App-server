@@ -17,11 +17,13 @@ VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859
        ('311501a8-8bc4-11eb-8dcd-0242ac130003', true, 'POINT(50.067960 19.945440)'),
        ('3115032e-8bc4-11eb-8dcd-0242ac130003', true, 'POINT(50.073960 19.968100)'),
        ('4734c0e0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0395 19.9412)'),
-       ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)');
+       ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)'),
+       ('4734c3a0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0201 19.9733)');
 
 INSERT INTO users (id, active, age, city, email, first_name, last_name, password, gender, university, user_role, location_id)
 VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 23, 'Kraków', 'tom@gmail.com', 'Tom', 'Clark', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
-       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 26, 'Kraków', 'ann@onet.pl', 'Ann', 'Smith','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003');
+       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 26, 'Kraków', 'ann@onet.pl', 'Ann', 'Smith','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003'),
+       ('b388fc4c-76a6-11eb-9439-0242ac130002', true, 26, 'Kraków', 'emilyj@wp.pl.pl', 'Emily', 'Jones','asd', 'MALE', 'Pedagogical Academy', 'USER', '4734c3a0-825f-11eb-8dcd-0242ac130003');
 
 
 INSERT INTO user_languages (user_id, language)
@@ -111,5 +113,6 @@ VALUES ('a1327e94-76ab-11eb-9439-0242ac130002', true, 'f166745e-76a8-11eb-9439-0
 
 INSERT INTO advertisement (id, active, create_date, user_id, title, description)
 VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
-       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.')
+       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.'),
+       ('defaa6ae-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fc4c-76a6-11eb-9439-0242ac130002', 'Hi', 'My name is Emily and I am keen on biology. I am shy and I have problem with meeting new people.');
 
