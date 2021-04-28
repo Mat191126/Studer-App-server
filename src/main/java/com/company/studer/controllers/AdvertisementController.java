@@ -34,10 +34,16 @@ public class AdvertisementController {
         );
     }
 
-    @GetMapping("/search/{phrases}")
+    @PostMapping("/search/{phraseToCheck}")
     @ResponseStatus(HttpStatus.OK)
-    private Set<String> searchForPrompt(@PathVariable List<String> phrases) {
-        return advertisementService.getPromptsByPhrases(phrases);
+    private Set<Set<Phrase>> searchForMultiplePrompt(@PathVariable String phraseToCheck,
+                                                     @RequestBody Set<Phrase> foundPhrases) {
+        return advertisementService.getPromptsByPhrases(phraseToCheck, foundPhrases);
+    }
+    @GetMapping("/search/{phraseToCheck}")
+    @ResponseStatus(HttpStatus.OK)
+    private Set<Set<Phrase>> searchForSinglePrompt(@PathVariable String phraseToCheck) {
+        return advertisementService.getPromptsByPhrases(phraseToCheck, Collections.emptySet());
     }
 
     @GetMapping("/search")

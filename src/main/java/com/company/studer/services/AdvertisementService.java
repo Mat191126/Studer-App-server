@@ -59,30 +59,29 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
                 .collect(Collectors.toList());
     }
 
-    public Set<String> getPromptsByPhrases(List<String> phrases) {
-        Set<String> foundPhrases = new HashSet<>();
-        String lastPhraseToCheck = phrases.get(phrases.size() - 1);
-        StringBuilder checkedPhrasesBuilder = new StringBuilder();
+    public Set<Set<Phrase>> getPromptsByPhrases(String phraseToCheck, Set<Phrase> foundPhrases) {
+        Set<Set<Phrase>> checkedAndFoundPhrases = new HashSet<>();
 
-        if (phrases.size() > 1) {
-            for (int phraseIndex = 0; phraseIndex < phrases.size() - 1; phraseIndex++) {
-                String checkedPhrase = phrases.get(phraseIndex);
-                checkedPhrasesBuilder.append(checkedPhrase);
-                checkedPhrasesBuilder.append(" ");
-            }
-        }
-        String checkedPhrases = checkedPhrasesBuilder.toString();
-
-        List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(lastPhraseToCheck);
+        List<String> citiesMatch = getAdvertisementCitiesByActiveAndUserCityContaining(phraseToCheck);
         for (String city : citiesMatch) {
-            foundPhrases.add(checkedPhrases + city);
+            Set<Phrase> singlePrompt = new LinkedHashSet<>();
+            if (foundPhrases.size() > 0) {
+                singlePrompt.addAll(foundPhrases);
+            }
+            singlePrompt.add(new Phrase(city, PhraseCategory.CITY));
+            checkedAndFoundPhrases.add(singlePrompt);
         }
-        List<String> universitiesMatch = getAdvertisementUniversitiesByActiveAndUserUniversityContaining(lastPhraseToCheck);
+        List<String> universitiesMatch = getAdvertisementUniversitiesByActiveAndUserUniversityContaining(phraseToCheck);
         for (String university : universitiesMatch) {
-            foundPhrases.add(checkedPhrases + university);
+            Set<Phrase> singlePrompt = new LinkedHashSet<>();
+            if (foundPhrases.size() > 0) {
+                singlePrompt.addAll(foundPhrases);
+            }
+            singlePrompt.add(new Phrase(university, PhraseCategory.UNIVERSITY));
+            checkedAndFoundPhrases.add(singlePrompt);
         }
 
-        return foundPhrases;
+        return checkedAndFoundPhrases;
     }
 
     public List<Advertisement> getAdvertisementsByActiveAndUserCity(String city) {
