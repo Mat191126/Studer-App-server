@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -25,19 +26,22 @@ public class CriteriaFactory {
             int minimumAge = userService.getMinimumUserAge();
             int maximumAge = userService.getMaximumUserAge();
             for (int age = minimumAge; age <= maximumAge; age += 3) {
-                int[] ageValues = new int[] {age, age + 1, age + 2};
-                String label = String.format("%s - %s", age, age+2);
-                criteria.add(new Criteria(label, CriteriaType.AGE, Arrays.toString(ageValues)));
+                List<String> ageValues = new ArrayList<>();
+                ageValues.add(String.valueOf(age));
+                ageValues.add(String.valueOf(age + 1));
+                ageValues.add(String.valueOf(age + 2));
+                String label = String.format("%s - %s", age, age + 2);
+                criteria.add(new Criteria(label, CriteriaType.AGE, ageValues));
             }
         }
         else if (criteriaType.equals(CriteriaType.GENDER)) {
             for (Gender gender : Gender.values()) {
-                criteria.add(new Criteria(gender.toString(), CriteriaType.GENDER, gender.toString().toUpperCase()));
+                criteria.add(new Criteria(gender.toString(), CriteriaType.GENDER, Collections.singletonList(gender.toString().toUpperCase())));
             }
         }
         else if (criteriaType.equals(CriteriaType.LANGUAGE)) {
             for (Language language : Language.values()) {
-                criteria.add(new Criteria(language.toString(), CriteriaType.LANGUAGE, language.toString().toUpperCase()));
+                criteria.add(new Criteria(language.toString(), CriteriaType.LANGUAGE, Collections.singletonList(language.toString().toUpperCase())));
             }
         }
         return criteria;
