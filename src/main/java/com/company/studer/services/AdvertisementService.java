@@ -105,9 +105,9 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
             case UNIVERSITY -> advertisementStream = advertisementStream
                                                      .filter(ad -> ad.getUser().getUniversity().equals(phraseValue));
             case AGE -> {
-                String[] splitAge = phraseValue.split("-");
+                String[] splitAge = phraseValue.split(",");
                 int minAge = Integer.parseInt(splitAge[0]);
-                int maxAge = Integer.parseInt(splitAge[1]);
+                int maxAge = Integer.parseInt(splitAge[2]);
                 advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
                 advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
             }
