@@ -92,37 +92,41 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
         for (Phrase phrase : filters) {
             PhraseCategory phraseCategory = phrase.getCategory();
             String phraseValue = phrase.getPhrase();
-            switch (phraseCategory) {
-                case CITY:
-                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getCity().equals(phraseValue));
-                    break;
-                case UNIVERSITY:
-                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getUniversity().equals(phraseValue));
-                    break;
-                case AGE:
-                    String[] splitAge = phraseValue.split("-");
-                    int minAge = Integer.parseInt(splitAge[0]);
-                    int maxAge = Integer.parseInt(splitAge[1]);
-                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
-                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
-                    break;
-                case GENDER:
-                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getGender().toString().equals(phraseValue));
-                    break;
-                case LANGUAGE:
-                    Language parsedLanguage = null;
-                    for (Language language : Language.values()) {
-                        if (language.toString().equals(phraseValue)) {
-                            parsedLanguage = language;
-                        }
-                    }
-                    Language finalParsedLanguage = parsedLanguage;
-                    if (!(finalParsedLanguage == null)) {
-                        advertisementStream = advertisementStream.filter(ad -> ad.getUser().getLanguages().contains(finalParsedLanguage));
-                    }
-                    break;
-            }
+            advertisementStream = filter(advertisementStream, phraseCategory, phraseValue);
         }
         return advertisementStream.collect(Collectors.toList());
+    }
+
+    private Stream<Advertisement> filter(Stream<Advertisement> advertisementStream,
+                                         PhraseCategory phraseCategory, String phraseValue) {
+        switch (phraseCategory) {
+            case CITY -> advertisementStream = advertisementStream
+                                               .filter(ad -> ad.getUser().getCity().equals(phraseValue));
+            case UNIVERSITY -> advertisementStream = advertisementStream
+                                                     .filter(ad -> ad.getUser().getUniversity().equals(phraseValue));
+            case AGE -> {
+                String[] splitAge = phraseValue.split("-");
+                int minAge = Integer.parseInt(splitAge[0]);
+                int maxAge = Integer.parseInt(splitAge[1]);
+                advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
+                advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
+            }
+            case GENDER -> advertisementStream = advertisementStream
+                                                 .filter(ad -> ad.getUser().getGender().toString().equals(phraseValue));
+            case LANGUAGE -> {
+                Language parsedLanguage = null;
+                for (Language language : Language.values()) {
+                    if (language.toString().equals(phraseValue)) {
+                        parsedLanguage = language;
+                    }
+                }
+                Language finalParsedLanguage = parsedLanguage;
+                if (!(finalParsedLanguage == null)) {
+                    advertisementStream = advertisementStream
+                                          .filter(ad -> ad.getUser().getLanguages().contains(finalParsedLanguage));
+                }
+            }
+        }
+        return advertisementStream;
     }
 }
