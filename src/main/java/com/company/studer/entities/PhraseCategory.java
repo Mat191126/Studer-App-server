@@ -1,5 +1,5 @@
 package com.company.studer.entities;
 
 public enum PhraseCategory {
-    CITY, AGE, UNIVERSITY
+    CITY, UNIVERSITY, AGE, GENDER, LANGUAGE
 }

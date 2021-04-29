@@ -40,5 +40,11 @@ public enum Language {
         public String toString() {
             return "Polish";
         }
+    },
+    OTHER {
+        @Override
+        public String toString() {
+            return "Other";
+        }
     }
 }

@@ -26,7 +26,7 @@ public class AdvertisementController {
         return advertisementService.getAll();
     }
 
-    @PostMapping
+    @PostMapping("/filter")
     @ResponseStatus(HttpStatus.OK)
     private Iterable<Advertisement> getAllByFilters(@RequestBody List<Phrase> filters) {
         return advertisementService.getAdvertisementsByFilters(filters);

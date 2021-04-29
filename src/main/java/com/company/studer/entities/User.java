@@ -41,7 +41,7 @@ public class User implements BaseEntityMethods<UUID> {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "language")
-    private Set<Language> langues;
+    private Set<Language> languages;
 
     private String photo;
 

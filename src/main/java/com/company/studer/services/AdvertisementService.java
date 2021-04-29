@@ -1,6 +1,7 @@
 package com.company.studer.services;
 
 import com.company.studer.entities.Advertisement;
+import com.company.studer.entities.Language;
 import com.company.studer.entities.Phrase;
 import com.company.studer.entities.PhraseCategory;
 import com.company.studer.repositories.AdvertisementRepository;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 public class AdvertisementService extends CrudService<Advertisement, UUID> {
@@ -85,6 +88,41 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
     }
 
     public List<Advertisement> getAdvertisementsByFilters(List<Phrase> filters) {
-        return null;
+        Stream<Advertisement> advertisementStream = StreamSupport.stream(getAll().spliterator(), false);
+        for (Phrase phrase : filters) {
+            PhraseCategory phraseCategory = phrase.getCategory();
+            String phraseValue = phrase.getPhrase();
+            switch (phraseCategory) {
+                case CITY:
+                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getCity().equals(phraseValue));
+                    break;
+                case UNIVERSITY:
+                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getUniversity().equals(phraseValue));
+                    break;
+                case AGE:
+                    String[] splitAge = phraseValue.split("-");
+                    int minAge = Integer.parseInt(splitAge[0]);
+                    int maxAge = Integer.parseInt(splitAge[1]);
+                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
+                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
+                    break;
+                case GENDER:
+                    advertisementStream = advertisementStream.filter(ad -> ad.getUser().getGender().toString().equals(phraseValue));
+                    break;
+                case LANGUAGE:
+                    Language parsedLanguage = null;
+                    for (Language language : Language.values()) {
+                        if (language.toString().equals(phraseValue)) {
+                            parsedLanguage = language;
+                        }
+                    }
+                    Language finalParsedLanguage = parsedLanguage;
+                    if (!(finalParsedLanguage == null)) {
+                        advertisementStream = advertisementStream.filter(ad -> ad.getUser().getLanguages().contains(finalParsedLanguage));
+                    }
+                    break;
+            }
+        }
+        return advertisementStream.collect(Collectors.toList());
     }
 }
