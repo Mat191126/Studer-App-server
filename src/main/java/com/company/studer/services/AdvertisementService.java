@@ -84,7 +84,7 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
         return checkedAndFoundPhrases;
     }
 
-    public List<Advertisement> getAdvertisementsByActiveAndUserCity(String city) {
-        return repository.findAdvertisementsByActiveAndUserCity(true, city);
+    public List<Advertisement> getAdvertisementsByFilters(List<Phrase> filters) {
+        return null;
     }
 }

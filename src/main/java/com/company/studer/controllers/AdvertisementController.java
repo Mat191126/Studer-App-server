@@ -26,6 +26,12 @@ public class AdvertisementController {
         return advertisementService.getAll();
     }
 
+    @PostMapping
+    @ResponseStatus(HttpStatus.OK)
+    private Iterable<Advertisement> getAllByFilters(@RequestBody List<Phrase> filters) {
+        return advertisementService.getAdvertisementsByFilters(filters);
+    }
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     private Advertisement getById(@PathVariable UUID id) {
@@ -44,12 +50,6 @@ public class AdvertisementController {
     @ResponseStatus(HttpStatus.OK)
     private Set<Set<Phrase>> searchForSinglePrompt(@PathVariable String phraseToCheck) {
         return advertisementService.getPromptsByPhrases(phraseToCheck, Collections.emptySet());
-    }
-
-    @GetMapping("/search")
-    @ResponseStatus(HttpStatus.OK)
-    private List<Advertisement> searchWithCriteria(@RequestParam List<Criteria> criteriaList) {
-        return Collections.emptyList();
     }
 
     @GetMapping("/criteria")
