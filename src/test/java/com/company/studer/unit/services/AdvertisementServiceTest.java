@@ -1,6 +1,7 @@
 package com.company.studer.unit.services;
 
 import com.company.studer.entities.Advertisement;
+import com.company.studer.entities.CriteriaFactory;
 import com.company.studer.entities.Location;
 import com.company.studer.repositories.AdvertisementRepository;
 import com.company.studer.services.AdvertisementService;
@@ -17,6 +18,7 @@ public class AdvertisementServiceTest extends CrudServiceTest<UUID> {
 
     private final AdvertisementRepository repository = mock(AdvertisementRepository.class);
     private final Advertisement advertisement = mock(Advertisement.class);
+    private final CriteriaFactory criteriaFactory = mock(CriteriaFactory.class);
 
     @Override
     protected AdvertisementRepository getRepositoryMock() {
@@ -25,7 +27,7 @@ public class AdvertisementServiceTest extends CrudServiceTest<UUID> {
 
     @Override
     protected AdvertisementService getService() {
-        return new AdvertisementService(repository);
+        return new AdvertisementService(repository, criteriaFactory);
     }
 
     @Override

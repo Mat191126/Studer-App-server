@@ -12,6 +12,4 @@ public interface AdvertisementRepository extends CrudRepositoryMethods<Advertise
     List<Advertisement> findDistinctAdvertisementsByActiveAndUserCityStartsWith(boolean active, String userCity);
 
     List<Advertisement> findDistinctAdvertisementsByActiveAndUserUniversityStartsWith(boolean active, String userUniversity);
-
-    List<Advertisement> findAdvertisementsByActiveAndUserCity(boolean active, String user_city);
 }

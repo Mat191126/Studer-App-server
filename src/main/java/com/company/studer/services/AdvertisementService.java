@@ -1,9 +1,6 @@
 package com.company.studer.services;
 
-import com.company.studer.entities.Advertisement;
-import com.company.studer.entities.Language;
-import com.company.studer.entities.Phrase;
-import com.company.studer.entities.PhraseCategory;
+import com.company.studer.entities.*;
 import com.company.studer.repositories.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +13,12 @@ import java.util.stream.StreamSupport;
 public class AdvertisementService extends CrudService<Advertisement, UUID> {
 
     private final AdvertisementRepository repository;
+    private final CriteriaFactory criteriaFactory;
 
-    public AdvertisementService(AdvertisementRepository repository) {
+    public AdvertisementService(AdvertisementRepository repository, CriteriaFactory criteriaFactory) {
         super(repository);
         this.repository = repository;
+        this.criteriaFactory = criteriaFactory;
     }
 
     @Override
@@ -82,6 +81,41 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
             }
             singlePrompt.add(new Phrase(university, PhraseCategory.UNIVERSITY));
             checkedAndFoundPhrases.add(singlePrompt);
+        }
+        for (Language language : Language.values()) {
+            Set<Phrase> singlePrompt = new LinkedHashSet<>();
+            if (language.toString().startsWith(phraseToCheck)) {
+                if (foundPhrases.size() > 0) {
+                    singlePrompt.addAll(foundPhrases);
+                }
+                singlePrompt.add(new Phrase(language.toString(), PhraseCategory.LANGUAGE));
+                checkedAndFoundPhrases.add(singlePrompt);
+            }
+        }
+        for (Gender gender : Gender.values()) {
+            Set<Phrase> singlePrompt = new LinkedHashSet<>();
+            if (gender.toString().startsWith(phraseToCheck)) {
+                if (foundPhrases.size() > 0) {
+                    singlePrompt.addAll(foundPhrases);
+                }
+                singlePrompt.add(new Phrase(gender.toString(), PhraseCategory.GENDER));
+                checkedAndFoundPhrases.add(singlePrompt);
+            }
+        }
+        for (Criteria ageCriteria : criteriaFactory.create(CriteriaType.AGE)) {
+            Set<Phrase> singlePrompt = new LinkedHashSet<>();
+            if (ageCriteria.getValue().contains(phraseToCheck)) {
+                if (foundPhrases.size() > 0) {
+                    singlePrompt.addAll(foundPhrases);
+                }
+                String ageString = ageCriteria.getValue()
+                        .toString()
+                        .replace("[", "")
+                        .replace("]", "")
+                        .replace(" ", "");
+                singlePrompt.add(new Phrase(ageString, PhraseCategory.AGE));
+                checkedAndFoundPhrases.add(singlePrompt);
+            }
         }
 
         return checkedAndFoundPhrases;
