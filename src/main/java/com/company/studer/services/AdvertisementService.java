@@ -145,12 +145,18 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
                 advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
                 advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
             }
-            case GENDER -> advertisementStream = advertisementStream
-                                                 .filter(ad -> ad.getUser().getGender().toString().equals(phraseValue));
+            case GENDER -> {
+                String genderString = phraseValue.charAt(0) + phraseValue.substring(1).toLowerCase();
+                System.out.println(genderString);
+                advertisementStream = advertisementStream
+                                                 .filter(ad -> ad.getUser().getGender().toString().equals(genderString));
+            }
             case LANGUAGE -> {
+                String languageString = phraseValue.charAt(0) + phraseValue.substring(1).toLowerCase();
+                System.out.println(languageString);
                 Language parsedLanguage = null;
                 for (Language language : Language.values()) {
-                    if (language.toString().equals(phraseValue)) {
+                    if (language.toString().equals(languageString)) {
                         parsedLanguage = language;
                     }
                 }
