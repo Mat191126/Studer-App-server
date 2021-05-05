@@ -28,7 +28,7 @@ public class AdvertisementController {
 
     @PostMapping("/filter")
     @ResponseStatus(HttpStatus.OK)
-    private Iterable<Advertisement> getAllByFilters(@RequestBody List<Phrase> filters) {
+    private Iterable<Advertisement> getAllByFilters(@RequestBody List<Criteria> filters) {
         return advertisementService.getAdvertisementsByFilters(filters);
     }
 
@@ -42,13 +42,13 @@ public class AdvertisementController {
 
     @PostMapping("/search/{phraseToCheck}")
     @ResponseStatus(HttpStatus.OK)
-    private Set<Set<Phrase>> searchForMultiplePrompt(@PathVariable String phraseToCheck,
-                                                     @RequestBody Set<Phrase> foundPhrases) {
+    private Set<Set<Criteria>> searchForMultiplePrompt(@PathVariable String phraseToCheck,
+                                                     @RequestBody Set<Criteria> foundPhrases) {
         return advertisementService.getPromptsByPhrases(phraseToCheck, foundPhrases);
     }
     @GetMapping("/search/{phraseToCheck}")
     @ResponseStatus(HttpStatus.OK)
-    private Set<Set<Phrase>> searchForSinglePrompt(@PathVariable String phraseToCheck) {
+    private Set<Set<Criteria>> searchForSinglePrompt(@PathVariable String phraseToCheck) {
         return advertisementService.getPromptsByPhrases(phraseToCheck, Collections.emptySet());
     }
 
