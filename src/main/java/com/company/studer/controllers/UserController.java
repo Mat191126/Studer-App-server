@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.UUID;
 
 @RestController
@@ -64,7 +63,7 @@ public class UserController {
 
     @PostMapping("/photo/upload")
     @ResponseStatus(HttpStatus.CREATED)
-    private InputStream uploadPhoto(@RequestBody InputStream image) {
+    private ByteArrayInputStream uploadPhoto(@RequestBody ByteArrayInputStream image) {
         //TODO
         return image;
     }
