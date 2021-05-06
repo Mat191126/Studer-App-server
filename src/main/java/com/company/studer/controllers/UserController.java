@@ -59,4 +59,10 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/photo/upload")
+    @ResponseStatus(HttpStatus.CREATED)
+    private void uploadPhoto() {
+        //TODO
+    }
 }
