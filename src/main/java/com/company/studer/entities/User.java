@@ -23,9 +23,8 @@ public class User implements BaseEntityMethods<UUID> {
     private UUID id;
 
     @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
+    private String name;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
@@ -47,7 +46,9 @@ public class User implements BaseEntityMethods<UUID> {
 
     @NotNull
     private String email;
+
     @NotNull
+    @JsonIgnore
     private String password;
 
     @NotNull
