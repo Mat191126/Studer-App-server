@@ -26,8 +26,7 @@ public class UserService extends CrudService<User, UUID> {
         Optional<User> oldUserOptional = get(newUser.getId());
         if (oldUserOptional.isPresent()) {
             User oldUser = oldUserOptional.get();
-            oldUser.setFirstName(newUser.getFirstName());
-            oldUser.setLastName(newUser.getLastName());
+            oldUser.setName(newUser.getName());
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());
             oldUser.setUserRole(newUser.getUserRole());

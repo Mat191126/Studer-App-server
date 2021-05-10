@@ -54,8 +54,7 @@ public class UserServiceTest extends CrudServiceTest<UUID> {
         //Assert
         assertAll(
                 () -> verify(repository).findByIdAndActive(uuid, true),
-                () -> verify(user).setFirstName(user.getFirstName()),
-                () -> verify(user).setLastName(user.getLastName()),
+                () -> verify(user).setName(user.getName()),
                 () -> verify(user).setEmail(user.getEmail()),
                 () -> verify(user).setPassword(user.getPassword()),
                 () -> verify(user).setUserRole(user.getUserRole()),
