@@ -2,11 +2,16 @@ package com.company.studer.controllers;
 
 import com.company.studer.entities.User;
 import com.company.studer.services.UserService;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -66,6 +71,18 @@ public class UserController {
     private ByteArrayInputStream uploadPhoto(@RequestBody ByteArrayInputStream image) {
         //TODO
         return image;
+    }
+
+    @GetMapping(value = "/photo/load", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<byte[]> getImage() throws IOException {
+
+        ClassPathResource imgFile = new ClassPathResource("static/profile-images/example-image.jpg");
+        byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
+
+        return ResponseEntity
+                .ok()
+                .body(bytes);
     }
 
 }
