@@ -1,14 +1,18 @@
 package com.company.studer.controllers;
 
 import com.company.studer.entities.User;
+import com.company.studer.helper.FileUploadUtil;
 import com.company.studer.services.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -66,18 +70,26 @@ public class UserController {
         }
     }
 
+
     @PostMapping("/photo/upload")
-    @ResponseStatus(HttpStatus.CREATED)
-    private ByteArrayInputStream uploadPhoto(@RequestBody ByteArrayInputStream image) {
-        //TODO
-        return image;
+    public RedirectView saveImage(User user,
+                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String fileName = UUID.randomUUID().toString();
+        user.setPhoto(fileName);
+
+        String uploadDir = "static/profile-images/" + user.getId();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+        return new RedirectView("/photo/load", true);
     }
 
-    @GetMapping(value = "/photo/load", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/photo/{imageName}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<byte[]> getImage() throws IOException {
+    public ResponseEntity<byte[]> getImage(@PathVariable String imageName) throws IOException {
 
-        ClassPathResource imgFile = new ClassPathResource("static/profile-images/example-image.jpg");
+        ClassPathResource imgFile = new ClassPathResource("static/profile-images/" + imageName + ".jpg");
         byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
 
         return ResponseEntity
