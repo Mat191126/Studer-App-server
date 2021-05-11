@@ -22,7 +22,9 @@ public class PointToJsonSerializer extends JsonSerializer<Point> {
                 jsonValue = String.format("%s %s", lat, lon);
             }
         }
-        catch(Exception e) {}
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
         generator.writeString(jsonValue);
     }

@@ -6,7 +6,6 @@ import com.company.studer.repositories.PlaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -14,7 +13,7 @@ import java.util.UUID;
 @Service
 public class PlaceService extends CrudService<Place, UUID> {
 
-    private PlaceRepository repository;
+    private final PlaceRepository repository;
     private final AddressService addressService;
 
     @Autowired
