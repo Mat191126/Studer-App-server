@@ -18,12 +18,18 @@ VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859
        ('3115032e-8bc4-11eb-8dcd-0242ac130003', true, 'POINT(50.073960 19.968100)'),
        ('4734c0e0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0395 19.9412)'),
        ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)'),
-       ('4734c3a0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0201 19.9733)');
+       ('4734c3a0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0253 19.9712)'),
+       ('4734c320-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0201 19.9733)'),
+       ('4734c3f0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0204 19.9732)'),
+       ('4734c2a0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0209 19.9701)');
 
 INSERT INTO users (id, active, birth_date, city, email, name, password, gender, university, user_role, location_id)
 VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, '1998-04-23', 'Krakow', 'tom@gmail.com', 'Tom', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
        ('b388fcbc-76a6-11eb-9439-0242ac130002', true, '1994-11-26', 'Krakow', 'ann@onet.pl', 'Ann','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003'),
-       ('b388fc4c-76a6-11eb-9439-0242ac130002', true, '1997-08-24', 'Krakow', 'emilyj@wp.pl.pl', 'Emily','asd', 'FEMALE', 'Pedagogical Academy', 'USER', '4734c3a0-825f-11eb-8dcd-0242ac130003');
+       ('b388fc4c-76a6-11eb-9439-0242ac130002', true, '1997-08-24', 'Krakow', 'emily@wp.pl', 'Emily','asd', 'FEMALE', 'Pedagogical Academy', 'USER', '4734c3a0-825f-11eb-8dcd-0242ac130003'),
+       ('b388fcfc-76a6-11eb-9439-0242ac130002', true, '1997-05-20', 'Krakow', 'clark@onet.com', 'Clark','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c320-825f-11eb-8dcd-0242ac130003'),
+       ('b388aa4c-76a6-11eb-9439-0242ac130002', true, '1995-03-05', 'Krakow', 'john@gmail.com', 'John','asd', 'MALE', 'Jagiellonian University', 'USER', '4734c3f0-825f-11eb-8dcd-0242ac130003'),
+       ('b388bb4c-76a6-11eb-9439-0242ac130002', true, '1995-10-28', 'Krakow', 'janejane@gmail.com', 'Jane','asd', 'FEMALE', 'Jagiellonian University', 'USER', '4734c2a0-825f-11eb-8dcd-0242ac130003');;
 
 
 INSERT INTO user_languages (user_id, language)
@@ -32,7 +38,14 @@ VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', 'FRENCH'),
        ('b388fa0a-76a6-11eb-9439-0242ac130002', 'SPANISH'),
        ('b388fcbc-76a6-11eb-9439-0242ac130002', 'GERMAN'),
        ('b388fcbc-76a6-11eb-9439-0242ac130002', 'POLISH'),
-       ('b388fc4c-76a6-11eb-9439-0242ac130002', 'ENGLISH');
+       ('b388fc4c-76a6-11eb-9439-0242ac130002', 'ENGLISH'),
+       ('b388fcfc-76a6-11eb-9439-0242ac130002', 'FRENCH'),
+       ('b388fcfc-76a6-11eb-9439-0242ac130002', 'ENGLISH'),
+       ('b388aa4c-76a6-11eb-9439-0242ac130002', 'RUSSIAN'),
+       ('b388aa4c-76a6-11eb-9439-0242ac130002', 'POLISH'),
+       ('b388bb4c-76a6-11eb-9439-0242ac130002', 'GERMAN'),
+       ('b388bb4c-76a6-11eb-9439-0242ac130002', 'ENGLISH'),
+       ('b388bb4c-76a6-11eb-9439-0242ac130002', 'ITALIAN');
 
 INSERT INTO place_type (id, active, type, name)
 VALUES (1001, true, 'LIBRARIES', 'Libraries'),
@@ -113,7 +126,10 @@ VALUES ('a1327e94-76ab-11eb-9439-0242ac130002', true, 'f166745e-76a8-11eb-9439-0
        ('a13285b0-76ab-11eb-9439-0242ac130002', true, 'f166afaa-76a8-11eb-9439-0242ac130002', 'b388fcbc-76a6-11eb-9439-0242ac130002');
 
 INSERT INTO advertisement (id, active, create_date, user_id, title, description)
-VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
-       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.'),
-       ('defaa6ae-87fd-11eb-8dcd-0242ac130003', true, CURRENT_TIMESTAMP, 'b388fc4c-76a6-11eb-9439-0242ac130002', 'Hi', 'My name is Emily and I am keen on biology. I am shy and I have problem with meeting new people.');
+VALUES ('defaa220-87fd-11eb-8dcd-0242ac130003', true, '2020-09-12', 'b388fa0a-76a6-11eb-9439-0242ac130002', 'Friendship needed', 'Hi, Im Tom. I am a friendly person from France who is interested in music, languages (French, Italian and Spanish) and the arts. I am looking to create a group of friends. I can teach you French in exchange for help in Poland.'),
+       ('defaa6ee-87fd-11eb-8dcd-0242ac130003', true, '2020-09-28', 'b388fcbc-76a6-11eb-9439-0242ac130002', 'Looking for buddy', 'Looking to meet new friends. I am new to the area. My name is Ann and I am interested in Rugby (yeah, it is not a misprint), reading books and history. I am not good in Polish so i want to find a patient friend.'),
+       ('defaa6ae-87fd-11eb-8dcd-0242ac130003', true, '2020-10-01', 'b388fc4c-76a6-11eb-9439-0242ac130002', 'Hi', 'My name is Emily and I am keen on biology. I am shy and I have problem with meeting new people.'),
+       ('defaa54e-87fd-11eb-8dcd-0242ac130003', true, '2021-01-23', 'b388fcfc-76a6-11eb-9439-0242ac130002', 'Help with getting lost', 'Hi, my name is Clark. Would you like to show me the university? It is so big and I get lost every time I enter it.'),
+       ('defaa2ee-87fd-11eb-8dcd-0242ac130003', true, '2021-03-03', 'b388aa4c-76a6-11eb-9439-0242ac130002', 'Get a grip', 'I would like to meet somebody who lives there longer and can show me how to get a grip. I speak Polish.'),
+       ('defaa6aa-87fd-11eb-8dcd-0242ac130003', true, '2021-03-22', 'b388bb4c-76a6-11eb-9439-0242ac130002', 'History freakishness', 'I like to meet new people who are interested in History. I am looking for a history-freak person like me.');
 
