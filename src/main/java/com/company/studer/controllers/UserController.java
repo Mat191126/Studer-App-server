@@ -5,7 +5,9 @@ import com.company.studer.helper.FileUploadUtil;
 import com.company.studer.services.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MimeType;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -82,7 +84,7 @@ public class UserController {
         return new RedirectView("/photo/load", true);
     }
 
-    @GetMapping(value = "/photo/{imageName}")
+    @GetMapping(value = "/photo/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> getImage(@PathVariable String imageName) throws IOException {
 
