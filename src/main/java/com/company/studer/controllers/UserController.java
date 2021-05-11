@@ -71,8 +71,8 @@ public class UserController {
 
 
     @PostMapping("/photo/upload")
-    public RedirectView saveImage(User user,
-                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public ResponseEntity<HttpStatus> saveImage(User user,
+                                                @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
         String fileName = UUID.randomUUID().toString();
         user.setPhoto(fileName);
@@ -81,7 +81,9 @@ public class UserController {
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
-        return new RedirectView("/photo/load", true);
+        return ResponseEntity
+                .ok()
+                .body(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/photo/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
