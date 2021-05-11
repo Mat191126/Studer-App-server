@@ -4,6 +4,8 @@ import com.company.studer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,8 +24,8 @@ public class CriteriaFactory {
         List<Criteria> criteria = new ArrayList<>();
 
         if (criteriaType.equals(CriteriaType.AGE)) {
-            int minimumAge = userService.getMinimumUserAge();
-            int maximumAge = userService.getMaximumUserAge();
+            int minimumAge = Period.between(userService.getMinimumUserAge(), LocalDate.now()).getYears();
+            int maximumAge = Period.between(userService.getMaximumUserAge(), LocalDate.now()).getYears();
             for (int age = minimumAge; age <= maximumAge; age += 3) {
                 List<String> ageValues = new ArrayList<>();
                 ageValues.add(String.valueOf(age));

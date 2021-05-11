@@ -5,6 +5,8 @@ import com.company.studer.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,8 +31,12 @@ public class UserService extends CrudService<User, UUID> {
             oldUser.setName(newUser.getName());
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());
-            oldUser.setUserRole(newUser.getUserRole());
+            oldUser.setBirthDate(newUser.getBirthDate());
             oldUser.setLocation(newUser.getLocation());
+            oldUser.setCity(newUser.getCity());
+            oldUser.setUniversity(newUser.getUniversity());
+            oldUser.setGender(newUser.getGender());
+            oldUser.setPhoto(newUser.getPhoto());
             add(oldUser);
             return true;
         }
@@ -50,12 +56,18 @@ public class UserService extends CrudService<User, UUID> {
         return false;
     }
 
-    public int getMinimumUserAge() {
-        return repository.findFirstByActiveOrderByAgeAsc(true).getAge();
+    public LocalDate getMinimumUserAge() {
+        return repository.findFirstByActiveOrderByBirthDateDesc(true).getBirthDate()
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
-    public int getMaximumUserAge() {
-        return repository.findFirstByActiveOrderByAgeDesc(true).getAge();
+    public LocalDate getMaximumUserAge() {
+        return repository.findFirstByActiveOrderByBirthDateAsc(true).getBirthDate()
+                .toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
     }
 
 }

@@ -20,10 +20,10 @@ VALUES ('235524ea-76a6-11eb-9439-0242ac130002', true, 'POINT(50.071522 19.943859
        ('4734c310-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0203 19.9737)'),
        ('4734c3a0-825f-11eb-8dcd-0242ac130003', true, 'POINT(50.0201 19.9733)');
 
-INSERT INTO users (id, active, age, city, email, name, password, gender, university, user_role, location_id)
-VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, 23, 'Krakow', 'tom@gmail.com', 'Tom', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
-       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, 26, 'Krakow', 'ann@onet.pl', 'Ann','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003'),
-       ('b388fc4c-76a6-11eb-9439-0242ac130002', true, 24, 'Krakow', 'emilyj@wp.pl.pl', 'Emily','asd', 'FEMALE', 'Pedagogical Academy', 'USER', '4734c3a0-825f-11eb-8dcd-0242ac130003');
+INSERT INTO users (id, active, birth_date, city, email, name, password, gender, university, user_role, location_id)
+VALUES ('b388fa0a-76a6-11eb-9439-0242ac130002', true, '1998-04-23', 'Krakow', 'tom@gmail.com', 'Tom', 'asd', 'MALE', 'Jagiellonian University', 'USER', '4734c0e0-825f-11eb-8dcd-0242ac130003'),
+       ('b388fcbc-76a6-11eb-9439-0242ac130002', true, '1994-11-26', 'Krakow', 'ann@onet.pl', 'Ann','asd', 'FEMALE', 'Pedagogical University', 'USER', '4734c310-825f-11eb-8dcd-0242ac130003'),
+       ('b388fc4c-76a6-11eb-9439-0242ac130002', true, '1997-08-24', 'Krakow', 'emilyj@wp.pl.pl', 'Emily','asd', 'FEMALE', 'Pedagogical Academy', 'USER', '4734c3a0-825f-11eb-8dcd-0242ac130003');
 
 
 INSERT INTO user_languages (user_id, language)

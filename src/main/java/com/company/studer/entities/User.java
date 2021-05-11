@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
 
@@ -28,8 +29,10 @@ public class User implements BaseEntityMethods<UUID> {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
     @NotNull
-    private int age;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthDate;
 
     private String university;
 

@@ -4,6 +4,9 @@ import com.company.studer.entities.*;
 import com.company.studer.repositories.AdvertisementRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -137,8 +140,10 @@ public class AdvertisementService extends CrudService<Advertisement, UUID> {
             case AGE -> {
                 int minAge = Integer.parseInt(criteriaValue.get(0));
                 int maxAge = Integer.parseInt(criteriaValue.get(2));
-                advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() >= minAge);
-                advertisementStream = advertisementStream.filter(ad -> ad.getUser().getAge() <= maxAge);
+                advertisementStream = advertisementStream.filter(ad ->
+                        Period.between(ad.getUser().getBirthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears() >= minAge);
+                advertisementStream = advertisementStream.filter(ad ->
+                        Period.between(ad.getUser().getBirthDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears() <= maxAge);
             }
             case GENDER -> {
                 String genderString = criteriaValue.get(FIRST_ELEMENT).charAt(0)

@@ -5,16 +5,13 @@ import com.company.studer.helper.FileUploadUtil;
 import com.company.studer.services.UserService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StreamUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
