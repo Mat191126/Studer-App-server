@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -74,10 +76,10 @@ public class UserController {
     public ResponseEntity<HttpStatus> saveImage(User user,
                                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
-        String fileName = UUID.randomUUID().toString();
+        String fileName = UUID.randomUUID().toString() + ".jpg";
         user.setPhoto(fileName);
 
-        String uploadDir = "static/profile-images/" + user.getId();
+        String uploadDir = "static/profile-images/";
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
