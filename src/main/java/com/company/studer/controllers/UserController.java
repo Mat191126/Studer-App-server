@@ -3,18 +3,16 @@ package com.company.studer.controllers;
 import com.company.studer.entities.User;
 import com.company.studer.helper.FileUploadUtil;
 import com.company.studer.services.UserService;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MimeType;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -79,7 +77,7 @@ public class UserController {
         String fileName = UUID.randomUUID().toString() + ".jpg";
         user.setPhoto(fileName);
 
-        String uploadDir = "static/profile-images/";
+        String uploadDir = "profile-images/";
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
@@ -92,8 +90,13 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<byte[]> getImage(@PathVariable String imageName) throws IOException {
 
-        ClassPathResource imgFile = new ClassPathResource("static/profile-images/" + imageName + ".jpg");
-        byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
+        BufferedImage image;
+        image = ImageIO.read(new File("profile-images/" + imageName + ".jpg"));
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        if (image != null) {
+            ImageIO.write(image, "jpg", byteArrayOutputStream);
+        }
+        byte[] bytes = byteArrayOutputStream.toByteArray();
 
         return ResponseEntity
                 .ok()

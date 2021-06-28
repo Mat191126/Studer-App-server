@@ -29,14 +29,15 @@ public class UserService extends CrudService<User, UUID> {
         if (oldUserOptional.isPresent()) {
             User oldUser = oldUserOptional.get();
             oldUser.setName(newUser.getName());
+            oldUser.setGender(newUser.getGender());
+            oldUser.setBirthDate(newUser.getBirthDate());
+            oldUser.setUniversity(newUser.getUniversity());
+            oldUser.setCity(newUser.getCity());
+            oldUser.setLanguages(newUser.getLanguages());
+            oldUser.setPhoto(newUser.getPhoto());
             oldUser.setEmail(newUser.getEmail());
             oldUser.setPassword(newUser.getPassword());
-            oldUser.setBirthDate(newUser.getBirthDate());
             oldUser.setLocation(newUser.getLocation());
-            oldUser.setCity(newUser.getCity());
-            oldUser.setUniversity(newUser.getUniversity());
-            oldUser.setGender(newUser.getGender());
-            oldUser.setPhoto(newUser.getPhoto());
             add(oldUser);
             return true;
         }
