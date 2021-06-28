@@ -1,9 +1,7 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.BaseEntityMethods;
 import com.company.studer.entities.PlaceType;
 import com.company.studer.repositories.PlaceTypeRepository;
-import com.company.studer.services.CrudService;
 import com.company.studer.services.PlaceTypeService;
 import org.junit.jupiter.api.Test;
 
@@ -80,7 +78,6 @@ public class PlaceTypeServiceTest extends CrudServiceTest<Long> {
     public void getByType_ReturnsPlaceTypeObject_WhenTypeGiven() {
         //Arrange
         Optional<PlaceType> expected = Optional.of(placeType);
-        Long id = getId();
 
         when(repository.findPlaceTypeByType(anyString())).thenReturn(Optional.of(placeType));
         PlaceTypeService placeTypeService = getService();

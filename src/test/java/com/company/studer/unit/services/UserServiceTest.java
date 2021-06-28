@@ -3,7 +3,6 @@ package com.company.studer.unit.services;
 import com.company.studer.entities.Location;
 import com.company.studer.entities.User;
 import com.company.studer.repositories.UserRepository;
-import com.company.studer.services.AddressService;
 import com.company.studer.services.LocationService;
 import com.company.studer.services.UserService;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.verify;
 
 public class UserServiceTest extends CrudServiceTest<UUID> {
 
@@ -55,9 +53,14 @@ public class UserServiceTest extends CrudServiceTest<UUID> {
         assertAll(
                 () -> verify(repository).findByIdAndActive(uuid, true),
                 () -> verify(user).setName(user.getName()),
+                () -> verify(user).setGender(user.getGender()),
+                () -> verify(user).setBirthDate(user.getBirthDate()),
+                () -> verify(user).setUniversity(user.getUniversity()),
+                () -> verify(user).setCity(user.getCity()),
+                () -> verify(user).setLanguages(user.getLanguages()),
+                () -> verify(user).setPhoto(user.getPhoto()),
                 () -> verify(user).setEmail(user.getEmail()),
                 () -> verify(user).setPassword(user.getPassword()),
-                () -> verify(user).setUserRole(user.getUserRole()),
                 () -> verify(user).setLocation(user.getLocation()),
                 () -> verify(repository).save(user),
                 () -> assertTrue(actual)
