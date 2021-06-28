@@ -21,7 +21,7 @@ The purpose of the application is to provide support to foreign students.
 ## How to run?
 ***
 1. Download the repository to your machine. Download Client part as well that you can find 
-   [there](https://github.com/emiliaszymanska/studerAppClient){:target="_blank"}.
+   <a href="https://github.com/emiliaszymanska/studerAppClient" target="_blank">there</a>.
 2. Open projects in your IDE. For Server part choose **userAndAdsRefactor** branch and for Client part - **profile** 
    (as we still work on this project).
 3. In the Client part run command *npm install*.
