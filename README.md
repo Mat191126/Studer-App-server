@@ -1,9 +1,7 @@
 # Studer
 
 ## What is it?
-***
 The purpose of the application is to provide support to foreign students.
-****
 
 ## Studer in action
 ***
