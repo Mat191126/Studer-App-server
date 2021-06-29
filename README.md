@@ -6,6 +6,7 @@ The purpose of the application is to provide support to foreign students.
 
 ## Studer in action
 
+###Main page
 The main part of our website is video with a girl.
 <br/>![screenshot1](src/main/resources/img/main_video.png)
 <br/>
@@ -15,7 +16,7 @@ We wanted to show her as the foreign student lost in the new habitat.
 <br/>
 It should support students, deliver a guidance and inspire.
 <br/>As we go further we can see that girl is changing and finally meet her new friend.
-##
+###Map
 Our first functionality is a map with places useful for foreign students.
 <br/>![screenshot1](src/main/resources/img/map_header.png)
 <br/>
@@ -27,7 +28,7 @@ that we are in, and blue circle will suggest that we are in its range.
 <br/>![screenshot1](src/main/resources/img/map_user_location.png)
 <br/>
 Of course, we can zoom in and out the map.
-##
+###What next?
 For now, we are finishing the functionality that we called 'Find a buddy', and starting a user profile section.
 
 ## Used technologies and tools
