@@ -1,8 +1,8 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.FavouritePlace;
-import com.company.studer.repositories.FavouritePlaceRepository;
-import com.company.studer.services.FavouritePlaceService;
+import com.company.studer.profile.entity.FavouritePlace;
+import com.company.studer.profile.repository.FavouritePlaceRepository;
+import com.company.studer.profile.service.FavouritePlaceService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

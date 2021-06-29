@@ -1,8 +1,8 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.BaseEntityMethods;
-import com.company.studer.repositories.CrudRepositoryMethods;
-import com.company.studer.services.CrudService;
+import com.company.studer.common.entity.BaseEntityMethods;
+import com.company.studer.common.repository.CrudRepositoryMethods;
+import com.company.studer.common.service.CrudService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

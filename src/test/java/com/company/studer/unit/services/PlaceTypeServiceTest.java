@@ -1,8 +1,8 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.PlaceType;
-import com.company.studer.repositories.PlaceTypeRepository;
-import com.company.studer.services.PlaceTypeService;
+import com.company.studer.map.entity.PlaceType;
+import com.company.studer.map.repository.PlaceTypeRepository;
+import com.company.studer.map.service.PlaceTypeService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

@@ -1,8 +1,8 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.Location;
-import com.company.studer.repositories.LocationRepository;
-import com.company.studer.services.LocationService;
+import com.company.studer.map.entity.Location;
+import com.company.studer.map.repository.LocationRepository;
+import com.company.studer.map.service.LocationService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

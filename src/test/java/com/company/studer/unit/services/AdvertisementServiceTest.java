@@ -1,10 +1,10 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.Advertisement;
-import com.company.studer.entities.CriteriaFactory;
-import com.company.studer.entities.Location;
-import com.company.studer.repositories.AdvertisementRepository;
-import com.company.studer.services.AdvertisementService;
+import com.company.studer.findBuddy.entity.Advertisement;
+import com.company.studer.findBuddy.entity.CriteriaFactory;
+import com.company.studer.map.entity.Location;
+import com.company.studer.findBuddy.repository.AdvertisementRepository;
+import com.company.studer.findBuddy.service.AdvertisementService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

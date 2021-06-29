@@ -1,10 +1,10 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.Location;
-import com.company.studer.entities.User;
-import com.company.studer.repositories.UserRepository;
-import com.company.studer.services.LocationService;
-import com.company.studer.services.UserService;
+import com.company.studer.map.entity.Location;
+import com.company.studer.profile.entity.User;
+import com.company.studer.profile.repository.UserRepository;
+import com.company.studer.map.service.LocationService;
+import com.company.studer.profile.service.UserService;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;

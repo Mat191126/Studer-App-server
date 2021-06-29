@@ -1,11 +1,11 @@
 package com.company.studer.unit.services;
 
-import com.company.studer.entities.Address;
-import com.company.studer.entities.Place;
-import com.company.studer.entities.PlaceType;
-import com.company.studer.repositories.PlaceRepository;
-import com.company.studer.services.AddressService;
-import com.company.studer.services.PlaceService;
+import com.company.studer.map.entity.Address;
+import com.company.studer.map.entity.Place;
+import com.company.studer.map.entity.PlaceType;
+import com.company.studer.map.repository.PlaceRepository;
+import com.company.studer.map.service.AddressService;
+import com.company.studer.map.service.PlaceService;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
