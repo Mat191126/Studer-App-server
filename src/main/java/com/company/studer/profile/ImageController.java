@@ -2,6 +2,7 @@ package com.company.studer.profile;
 
 import com.company.studer.common.helper.FileUploadUtil;
 import com.company.studer.profile.entity.User;
+import com.company.studer.profile.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,19 @@ import java.util.UUID;
 @RequestMapping("/api/user")
 public class ImageController {
 
+    private final UserService userService;
+
+    public ImageController(UserService userService) {
+        this.userService = userService;
+    }
+
     @PostMapping("/photo/upload")
     public ResponseEntity<HttpStatus> saveImage(User user,
                                                 @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
         String fileName = UUID.randomUUID().toString() + ".jpg";
         user.setPhoto(fileName);
+        userService.update(user);
 
         String uploadDir = "profile-images/";
 
