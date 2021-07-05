@@ -10,7 +10,7 @@ adopting simple DevOps practices with Docker.
 The application was created in line with the "mobile first" approach. It's fully responsible 
 and can be accessed by smartphones, tablets, laptops and desktop computers.
 
-###Features
+### Features
 
 *The Map*<br/>
 The project contains a map with important places (prepared with the Leaflet library). Moreover, 
