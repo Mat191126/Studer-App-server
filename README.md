@@ -2,8 +2,22 @@
 
 ## What is it?
 
-The purpose of the application is to provide support to foreign students.
+Studer is an application dedicated to international students. The purpose is to help them to settle in Poland.
+Preparation of the full-stack project included: the planning phase, UI and UX design process (Figma), 
+front-end development in React, back-end development in Spring, database design and implementation (Postgres), 
+adopting simple DevOps practices with Docker.
 
+The application was created in line with the "mobile first" approach. It's fully responsible 
+and can be accessed by smartphones, tablets, laptops and desktop computers.
+
+###Features
+
+*The Map*<br/>
+The project contains a map with important places (prepared with the Leaflet library). Moreover, 
+the application can access the user's location and shows places within a given distance radius.
+
+*Find a Buddy*<br/>
+There is a Find a Buddy functionality that helps newcomers to meet new people. The feature is still developed.
 ## Studer in action
 
 ### *Main page*
@@ -46,7 +60,7 @@ For now, we are finishing the functionality that we called 'Find a buddy', and s
 1. Download the repository to your machine. Download Client part as well that you can find 
    [there](https://github.com/emiliaszymanska/studerAppClient).
 2. Open projects in your IDE. For Server part choose **userAndAdsRefactor** branch and for Client part - **profile** 
-   (as we still work on this project).
+   or **buddyFinder** (as we still work on this project).
 3. In the Client part run command *npm install*.
 4. In the Server part create an empty PostgreSQL database. In the *resources* folder you can find 
    the *app-properties-template* file. Fill in the missing data there and save it as 'application.properties'.
